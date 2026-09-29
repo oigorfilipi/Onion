@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public sealed class EnemyFireShooter2D : MonoBehaviour
@@ -10,8 +11,14 @@ public sealed class EnemyFireShooter2D : MonoBehaviour
     [SerializeField, Min(0.1f)] private float secondsBetweenShots = 2.5f;
     [SerializeField, Min(0.1f)] private float projectileSpeed = 4f;
     [SerializeField, Min(0)] private int projectileDamage = 8;
+    [SerializeField, Min(0.1f)] private float projectileMaxDistance = 9f;
+    [SerializeField, Min(0f)] private float aimLeadTime = 0.12f;
+    [SerializeField] private EnemyDashPunch2D dashPunch;
 
     private float nextShotTime;
+    private bool attackWindowOpen = true;
+    private Rigidbody2D targetBody;
+    private readonly HashSet<FireProjectile2D> activeProjectiles = new HashSet<FireProjectile2D>();
 
     private void Start()
     {
@@ -24,12 +31,18 @@ public sealed class EnemyFireShooter2D : MonoBehaviour
             }
         }
 
+        if (target != null)
+        {
+            targetBody = target.GetComponent<Rigidbody2D>();
+        }
+
         nextShotTime = Time.time + 1.5f;
     }
 
     private void Update()
     {
-        if (target == null || projectileSprite == null || Time.time < nextShotTime)
+        if (Time.timeScale == 0f || !attackWindowOpen || target == null || projectileSprite == null || Time.time < nextShotTime ||
+            (dashPunch != null && dashPunch.IsAttacking))
         {
             return;
         }
@@ -40,8 +53,27 @@ public sealed class EnemyFireShooter2D : MonoBehaviour
             return;
         }
 
-        Shoot(offset.normalized);
+        Vector2 aimOffset = offset;
+        if (targetBody != null && aimLeadTime > 0f)
+        {
+            aimOffset += targetBody.linearVelocity * aimLeadTime;
+        }
+
+        Shoot(aimOffset.sqrMagnitude > 0.01f ? aimOffset.normalized : offset.normalized);
         nextShotTime = Time.time + secondsBetweenShots;
+    }
+
+    private void OnDisable()
+    {
+        foreach (FireProjectile2D projectile in activeProjectiles)
+        {
+            if (projectile != null)
+            {
+                Destroy(projectile.gameObject);
+            }
+        }
+
+        activeProjectiles.Clear();
     }
 
     private void Shoot(Vector2 direction)
@@ -64,6 +96,23 @@ public sealed class EnemyFireShooter2D : MonoBehaviour
         collider.isTrigger = true;
 
         FireProjectile2D fireball = projectile.AddComponent<FireProjectile2D>();
-        fireball.Initialize(direction, projectileSpeed, projectileDamage);
+        fireball.Finished += RemoveProjectile;
+        activeProjectiles.Add(fireball);
+        fireball.Initialize(direction, projectileSpeed, projectileDamage, projectileMaxDistance);
+    }
+
+    public void ConfigureDashPunch(EnemyDashPunch2D punch)
+    {
+        dashPunch = punch;
+    }
+
+    public void SetAttackWindowOpen(bool open)
+    {
+        attackWindowOpen = open;
+    }
+
+    private void RemoveProjectile(FireProjectile2D projectile)
+    {
+        activeProjectiles.Remove(projectile);
     }
 }

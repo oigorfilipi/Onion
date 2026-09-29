@@ -11,7 +11,9 @@ public enum InventoryItemId
     Arrow,
     ChestArmor,
     Helmet,
-    MetalBoots
+    MetalBoots,
+    Shield,
+    Backpack
 }
 
 public static class InventoryItemCatalog
@@ -31,6 +33,8 @@ public static class InventoryItemCatalog
             case InventoryItemId.ChestArmor: return "Peitoral de metal";
             case InventoryItemId.Helmet: return "Capacete de metal";
             case InventoryItemId.MetalBoots: return "Bota de metal";
+            case InventoryItemId.Shield: return "Escudo de metal";
+            case InventoryItemId.Backpack: return "Mochila";
             default: return "Vazio";
         }
     }

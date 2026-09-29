@@ -16,6 +16,8 @@ public sealed class PrologueStorySequence2D : Interactable2D
     [SerializeField] private PrologueQuest quest;
     [SerializeField] private EnemyHealth2D fireEnemy;
     [SerializeField] private EnemyFireShooter2D fireShooter;
+    [SerializeField] private EnemyDashPunch2D fireDashPunch;
+    [SerializeField] private BossCombatPattern2D fireCombatPattern;
     [SerializeField] private EnemyHealth2D mutantRat;
     [SerializeField] private PlayerPowerLoadout2D playerPowers;
     [SerializeField] private DialogueManager2D dialogueManager;
@@ -23,6 +25,7 @@ public sealed class PrologueStorySequence2D : Interactable2D
     [SerializeField] private Collider2D interactionCollider;
     [SerializeField, Min(0f)] private float fallDuration = 0.65f;
     [SerializeField, Min(0f)] private float rescuePause = 0.8f;
+    [SerializeField, Range(0.01f, 1f)] private float fireEnemyRescueHealthRatio = 0.6f;
     [SerializeField, Min(0.5f)] private float ratRevealDistance = 2.5f;
 
     private PlayerMovement2D playerMovement;
@@ -129,12 +132,24 @@ public sealed class PrologueStorySequence2D : Interactable2D
         CachePlayerComponents();
         spoonCollected = true;
         fireEnemy.HealthChanged += OnFireEnemyHealthChanged;
+        int rescueHealth = Mathf.CeilToInt(fireEnemy.MaxHealth * fireEnemyRescueHealthRatio);
+        fireEnemy.SetDamageFloor(rescueHealth);
         fireEnemy.SetDamageLocked(false);
         fireEnemy.gameObject.SetActive(true);
 
         if (fireShooter != null)
         {
             fireShooter.enabled = true;
+        }
+
+        if (fireDashPunch != null)
+        {
+            fireDashPunch.enabled = true;
+        }
+
+        if (fireCombatPattern != null)
+        {
+            fireCombatPattern.BeginPattern();
         }
     }
 
@@ -163,8 +178,8 @@ public sealed class PrologueStorySequence2D : Interactable2D
 
     private void OnFireEnemyHealthChanged(EnemyHealth2D enemy, int currentHealth, int maxHealth)
     {
-        int halfHealth = Mathf.CeilToInt(maxHealth * 0.5f);
-        if (rescueStarted || currentHealth > halfHealth)
+        int rescueHealth = Mathf.CeilToInt(maxHealth * fireEnemyRescueHealthRatio);
+        if (rescueStarted || currentHealth > rescueHealth)
         {
             return;
         }
@@ -172,9 +187,19 @@ public sealed class PrologueStorySequence2D : Interactable2D
         rescueStarted = true;
         enemy.HealthChanged -= OnFireEnemyHealthChanged;
         enemy.SetDamageLocked(true);
+        if (fireCombatPattern != null)
+        {
+            fireCombatPattern.enabled = false;
+        }
+
         if (fireShooter != null)
         {
             fireShooter.enabled = false;
+        }
+
+        if (fireDashPunch != null)
+        {
+            fireDashPunch.enabled = false;
         }
 
         StartCoroutine(PlayRescueSequence(enemy));

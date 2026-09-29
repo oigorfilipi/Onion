@@ -14,18 +14,33 @@ public sealed class InventorySlot2D
 public sealed class PlayerInventory2D : MonoBehaviour
 {
     public const int RequiredSlotCount = 40;
+    public const int BackpackSlotBonus = 20;
+    public const int MaximumSlotCount = RequiredSlotCount + BackpackSlotBonus;
 
     [SerializeField, Min(1)] private int maxStackPerSlot = 99;
     [SerializeField] private List<InventorySlot2D> slots = new List<InventorySlot2D>();
+    private PlayerEquipment2D equipment;
 
     public IReadOnlyList<InventorySlot2D> Slots => slots;
-    public int SlotCount => RequiredSlotCount;
+    public int SlotCount
+    {
+        get
+        {
+            if (equipment == null)
+            {
+                equipment = GetComponent<PlayerEquipment2D>();
+            }
+
+            return equipment != null && equipment.HasBackpack ? MaximumSlotCount : RequiredSlotCount;
+        }
+    }
     public bool IsOpen { get; private set; }
 
     public event Action InventoryChanged;
 
     private void Awake()
     {
+        equipment = GetComponent<PlayerEquipment2D>();
         EnsureSlots();
         maxStackPerSlot = Mathf.Max(1, maxStackPerSlot);
     }
@@ -37,9 +52,11 @@ public sealed class PlayerInventory2D : MonoBehaviour
 
     public int CountItem(InventoryItemId itemId)
     {
+        EnsureSlots();
         int count = 0;
-        foreach (InventorySlot2D slot in slots)
+        for (int i = 0; i < SlotCount; i++)
         {
+            InventorySlot2D slot = slots[i];
             if (slot != null && slot.itemId == itemId)
             {
                 count += slot.quantity;
@@ -52,7 +69,7 @@ public sealed class PlayerInventory2D : MonoBehaviour
     public InventoryItemId GetItemAt(int slotIndex)
     {
         EnsureSlots();
-        if (slotIndex < 0 || slotIndex >= slots.Count || slots[slotIndex].IsEmpty)
+        if (slotIndex < 0 || slotIndex >= SlotCount || slots[slotIndex].IsEmpty)
         {
             return InventoryItemId.None;
         }
@@ -63,7 +80,7 @@ public sealed class PlayerInventory2D : MonoBehaviour
     public bool TryRemoveItemAt(int slotIndex, int amount = 1)
     {
         EnsureSlots();
-        if (slotIndex < 0 || slotIndex >= slots.Count || amount <= 0)
+        if (slotIndex < 0 || slotIndex >= SlotCount || amount <= 0)
         {
             return false;
         }
@@ -90,8 +107,9 @@ public sealed class PlayerInventory2D : MonoBehaviour
 
         int stackLimit = GetStackLimit(itemId);
         int remainingCapacity = 0;
-        foreach (InventorySlot2D slot in slots)
+        for (int i = 0; i < SlotCount; i++)
         {
+            InventorySlot2D slot = slots[i];
             if (slot.IsEmpty)
             {
                 remainingCapacity += stackLimit;
@@ -122,8 +140,9 @@ public sealed class PlayerInventory2D : MonoBehaviour
 
         if (InventoryItemCatalog.IsStackable(itemId))
         {
-            foreach (InventorySlot2D slot in slots)
+            for (int i = 0; i < SlotCount; i++)
             {
+                InventorySlot2D slot = slots[i];
                 if (!slot.IsEmpty && slot.itemId == itemId && slot.quantity < stackLimit)
                 {
                     int added = Mathf.Min(remaining, stackLimit - slot.quantity);
@@ -134,8 +153,9 @@ public sealed class PlayerInventory2D : MonoBehaviour
             }
         }
 
-        foreach (InventorySlot2D slot in slots)
+        for (int i = 0; i < SlotCount; i++)
         {
+            InventorySlot2D slot = slots[i];
             if (!slot.IsEmpty) continue;
 
             int added = Mathf.Min(remaining, stackLimit);
@@ -157,7 +177,7 @@ public sealed class PlayerInventory2D : MonoBehaviour
         }
 
         int remaining = amount;
-        for (int i = slots.Count - 1; i >= 0 && remaining > 0; i--)
+        for (int i = SlotCount - 1; i >= 0 && remaining > 0; i--)
         {
             InventorySlot2D slot = slots[i];
             if (slot.IsEmpty || slot.itemId != itemId) continue;
@@ -175,7 +195,7 @@ public sealed class PlayerInventory2D : MonoBehaviour
     public bool TryUseItemAt(int slotIndex, PlayerVitals vitals, out string resultMessage)
     {
         resultMessage = "Esse item nao pode ser usado diretamente.";
-        if (slotIndex < 0 || slotIndex >= slots.Count || vitals == null)
+        if (slotIndex < 0 || slotIndex >= SlotCount || vitals == null)
         {
             return false;
         }
@@ -202,12 +222,12 @@ public sealed class PlayerInventory2D : MonoBehaviour
         {
             if (vitals.CurrentEnergy >= vitals.MaxEnergy)
             {
-                resultMessage = "Sua energia ja esta cheia.";
+                resultMessage = "Sua estamina ja esta cheia.";
                 return false;
             }
 
             vitals.RestoreEnergy(50);
-            resultMessage = "Queijo usado: +50 de energia.";
+            resultMessage = "Queijo usado: +50 de estamina.";
         }
         else
         {
@@ -222,8 +242,40 @@ public sealed class PlayerInventory2D : MonoBehaviour
 
     public bool IsConsumableAt(int slotIndex)
     {
-        return slotIndex >= 0 && slotIndex < slots.Count && !slots[slotIndex].IsEmpty &&
+        return slotIndex >= 0 && slotIndex < SlotCount && !slots[slotIndex].IsEmpty &&
                InventoryItemCatalog.IsConsumable(slots[slotIndex].itemId);
+    }
+
+    public bool HasItemsInRange(int startIndex, int endExclusive)
+    {
+        EnsureSlots();
+        int start = Mathf.Clamp(startIndex, 0, slots.Count);
+        int end = Mathf.Clamp(endExclusive, start, slots.Count);
+        for (int i = start; i < end; i++)
+        {
+            if (!slots[i].IsEmpty)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool HasEmptySlotInRange(int startIndex, int endExclusive)
+    {
+        EnsureSlots();
+        int start = Mathf.Clamp(startIndex, 0, slots.Count);
+        int end = Mathf.Clamp(endExclusive, start, slots.Count);
+        for (int i = start; i < end; i++)
+        {
+            if (slots[i].IsEmpty)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private int GetStackLimit(InventoryItemId itemId)
@@ -238,14 +290,14 @@ public sealed class PlayerInventory2D : MonoBehaviour
             slots = new List<InventorySlot2D>();
         }
 
-        while (slots.Count < RequiredSlotCount)
+        while (slots.Count < MaximumSlotCount)
         {
             slots.Add(new InventorySlot2D());
         }
 
-        if (slots.Count > RequiredSlotCount)
+        if (slots.Count > MaximumSlotCount)
         {
-            slots.RemoveRange(RequiredSlotCount, slots.Count - RequiredSlotCount);
+            slots.RemoveRange(MaximumSlotCount, slots.Count - MaximumSlotCount);
         }
 
         for (int i = 0; i < slots.Count; i++)

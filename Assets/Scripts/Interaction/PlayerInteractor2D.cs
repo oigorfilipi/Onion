@@ -27,7 +27,7 @@ public sealed class PlayerInteractor2D : MonoBehaviour
         currentTarget = FindClosestInteractable();
 
         Keyboard keyboard = Keyboard.current;
-        if (currentTarget != null && keyboard != null && keyboard.eKey.wasPressedThisFrame)
+        if (currentTarget != null && keyboard != null && keyboard.fKey.wasPressedThisFrame)
         {
             currentTarget.Interact(this);
         }
@@ -60,7 +60,8 @@ public sealed class PlayerInteractor2D : MonoBehaviour
 
     private void OnGUI()
     {
-        if (currentTarget == null || (dialogueManager != null && dialogueManager.BlocksWorldInput) || (inventory != null && inventory.IsOpen))
+        if (currentTarget == null || Time.timeScale == 0f ||
+            (dialogueManager != null && dialogueManager.BlocksWorldInput) || (inventory != null && inventory.IsOpen))
         {
             return;
         }
@@ -72,7 +73,7 @@ public sealed class PlayerInteractor2D : MonoBehaviour
         };
 
         Rect promptRect = new Rect(Screen.width * 0.5f - 170f, Screen.height - 110f, 340f, 44f);
-        GUI.Box(promptRect, $"E - {currentTarget.PromptText}", promptStyle);
+        GUI.Box(promptRect, $"F - {currentTarget.PromptText}", promptStyle);
     }
 
     private void OnDrawGizmosSelected()

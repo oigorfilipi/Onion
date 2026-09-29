@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Flowers_White_Animacao_0
+  m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
+  m_AnimatedSprites:
+  - {fileID: 8296295293788433906, guid: ec96ea5e565c9814db5afa5ceb31cf86, type: 3}
+  - {fileID: -3876516660051494412, guid: ec96ea5e565c9814db5afa5ceb31cf86, type: 3}
+  - {fileID: -4246593911665854913, guid: ec96ea5e565c9814db5afa5ceb31cf86, type: 3}
+  - {fileID: 258288110630442341, guid: ec96ea5e565c9814db5afa5ceb31cf86, type: 3}
+  - {fileID: 1055496975743127617, guid: ec96ea5e565c9814db5afa5ceb31cf86, type: 3}
+  - {fileID: 3051276068637408029, guid: ec96ea5e565c9814db5afa5ceb31cf86, type: 3}
+  - {fileID: 4051611752719879627, guid: ec96ea5e565c9814db5afa5ceb31cf86, type: 3}
+  - {fileID: -5220438814356993202, guid: ec96ea5e565c9814db5afa5ceb31cf86, type: 3}
+  m_MinSpeed: 0.8333333
+  m_MaxSpeed: 0.8333333
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0

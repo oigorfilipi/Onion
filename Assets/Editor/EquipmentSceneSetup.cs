@@ -30,12 +30,6 @@ public static class EquipmentSceneSetup
 
         try
         {
-            if (FindInScene(gameScene, "Equipment Setup Marker") != null)
-            {
-                EditorUtility.DisplayDialog("Equipamentos ja adicionados", "Os equipamentos provisórios ja estao na cena Jogo.", "OK");
-                return;
-            }
-
             GameObject player = FindInScene(gameScene, "Player");
             GameObject inventoryHudObject = FindInScene(gameScene, "Inventory HUD");
             Sprite placeholderSprite = AssetDatabase.LoadAssetAtPath<Sprite>(PlaceholderSpritePath);
@@ -52,20 +46,27 @@ public static class EquipmentSceneSetup
             InventoryHUD2D inventoryHud = inventoryHudObject.GetComponent<InventoryHUD2D>();
             if (inventoryHud != null) SetReference(inventoryHud, "equipment", equipment);
 
-            GameObject marker = new GameObject("Equipment Setup Marker");
-            marker.transform.position = Vector3.zero;
+            if (FindInScene(gameScene, "Equipment Setup Marker") == null)
+            {
+                GameObject marker = new GameObject("Equipment Setup Marker");
+                marker.transform.position = Vector3.zero;
+            }
 
-            CreateArmorPickup("Equipamento - Peitoral de metal", InventoryItemId.ChestArmor,
+            CreateArmorPickup(gameScene, "Equipamento - Peitoral de metal", InventoryItemId.ChestArmor,
                 new Vector2(8f, 2f), placeholderSprite, new Color(0.56f, 0.62f, 0.69f));
-            CreateArmorPickup("Equipamento - Capacete de metal", InventoryItemId.Helmet,
+            CreateArmorPickup(gameScene, "Equipamento - Capacete de metal", InventoryItemId.Helmet,
                 new Vector2(-9f, 6.8f), placeholderSprite, new Color(0.72f, 0.77f, 0.82f));
-            CreateArmorPickup("Equipamento - Botas de metal", InventoryItemId.MetalBoots,
+            CreateArmorPickup(gameScene, "Equipamento - Botas de metal", InventoryItemId.MetalBoots,
                 new Vector2(-10f, -6.5f), placeholderSprite, new Color(0.43f, 0.49f, 0.57f));
+            CreateArmorPickup(gameScene, "Equipamento - Escudo de metal", InventoryItemId.Shield,
+                new Vector2(8f, -4.5f), placeholderSprite, new Color(0.33f, 0.58f, 0.78f));
+            CreateArmorPickup(gameScene, "Equipamento - Mochila", InventoryItemId.Backpack,
+                new Vector2(-4f, -6.5f), placeholderSprite, new Color(0.62f, 0.42f, 0.24f));
 
             EditorSceneManager.MarkSceneDirty(gameScene);
             EditorSceneManager.SaveScene(gameScene);
             AssetDatabase.SaveAssets();
-            Debug.Log("Sistema de equipamento e tres pecas de armadura adicionados. O NPC do ferro-velho entrega a espada apos a missao.");
+            Debug.Log("Sistema de equipamento atualizado com armaduras, escudo e mochila. O NPC do ferro-velho entrega a espada apos a missao.");
         }
         finally
         {
@@ -81,8 +82,13 @@ public static class EquipmentSceneSetup
         }
     }
 
-    private static void CreateArmorPickup(string objectName, InventoryItemId itemId, Vector2 position, Sprite sprite, Color color)
+    private static void CreateArmorPickup(Scene scene, string objectName, InventoryItemId itemId, Vector2 position, Sprite sprite, Color color)
     {
+        if (FindInScene(scene, objectName) != null)
+        {
+            return;
+        }
+
         GameObject armor = new GameObject(objectName);
         armor.transform.position = position;
         armor.transform.localScale = Vector3.one * 0.72f;

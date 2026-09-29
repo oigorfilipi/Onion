@@ -7,26 +7,31 @@ public sealed class PlayerVitals : MonoBehaviour
     [SerializeField, Min(1)] private int maxHealth = 100;
     [SerializeField, Min(0)] private int currentHealth = 100;
 
-    [Header("Energia")]
+    [Header("Estamina")]
     [SerializeField, Min(1)] private int maxEnergy = 100;
     [SerializeField, Min(0)] private int currentEnergy = 100;
 
-    [Header("Defesa")]
-    [SerializeField, Range(0f, 1f)] private float blockDamageMultiplier = 0.5f;
+    [Header("Queimadura")]
+    [SerializeField, Min(0)] private int burnDamagePerTick = 2;
+    [SerializeField, Min(0)] private int burnTicks = 3;
+    [SerializeField, Min(0.1f)] private float burnInterval = 1f;
 
     [Header("Regeneracao passiva (segundos por ponto)")]
     [SerializeField, Min(0.01f)] private float secondsPerRegenerationPoint = 12f;
 
     private float healthRegenerationTimer;
     private float energyRegenerationTimer;
+    private int burnTicksRemaining;
+    private float nextBurnTickAt;
     private PlayerEquipment2D equipment;
 
     public bool IsBlocking { get; private set; }
-    public float BlockDamageMultiplier => blockDamageMultiplier;
+    public float BlockDamageMultiplier => equipment != null ? equipment.BlockDamageMultiplier : 1f;
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
     public int CurrentEnergy => currentEnergy;
     public int MaxEnergy => maxEnergy;
+    public bool IsBurning => burnTicksRemaining > 0;
 
     public event Action<int, int> HealthChanged;
     public event Action<int, int> EnergyChanged;
@@ -35,7 +40,6 @@ public sealed class PlayerVitals : MonoBehaviour
     {
         maxHealth = Mathf.Max(1, maxHealth);
         maxEnergy = Mathf.Max(1, maxEnergy);
-        blockDamageMultiplier = Mathf.Clamp01(blockDamageMultiplier);
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         currentEnergy = Mathf.Clamp(currentEnergy, 0, maxEnergy);
         equipment = GetComponent<PlayerEquipment2D>();
@@ -45,6 +49,7 @@ public sealed class PlayerVitals : MonoBehaviour
     {
         RegenerateHealthOverTime();
         RegenerateEnergyOverTime();
+        ApplyBurnTick();
     }
 
     public bool TrySpendEnergy(int amount)
@@ -75,23 +80,44 @@ public sealed class PlayerVitals : MonoBehaviour
 
     public void ReceiveDamage(int amount)
     {
+        ReceiveDamage(amount, true);
+    }
+
+    public void ReceiveStatusDamage(int amount)
+    {
+        ReceiveDamage(amount, false);
+    }
+
+    private void ReceiveDamage(int amount, bool canBlock)
+    {
         if (amount <= 0)
         {
             return;
         }
 
         int damageAfterArmor = equipment != null ? equipment.ReduceIncomingDamage(amount) : amount;
-        if (IsBlocking)
+        if (canBlock && IsBlocking && equipment != null && equipment.CanBlock && TrySpendEnergy(equipment.BlockEnergyCost))
         {
-            damageAfterArmor = Mathf.CeilToInt(damageAfterArmor * blockDamageMultiplier);
+            damageAfterArmor = Mathf.CeilToInt(damageAfterArmor * equipment.BlockDamageMultiplier);
         }
 
         SetHealth(currentHealth - damageAfterArmor);
     }
 
+    public void ApplyBurn()
+    {
+        if (currentHealth <= 0 || burnDamagePerTick <= 0 || burnTicks <= 0 || burnInterval <= 0f)
+        {
+            return;
+        }
+
+        burnTicksRemaining = Mathf.Max(burnTicksRemaining, burnTicks);
+        nextBurnTickAt = Time.time + burnInterval;
+    }
+
     public void SetBlocking(bool blocking)
     {
-        IsBlocking = blocking;
+        IsBlocking = blocking && equipment != null && equipment.CanBlock;
     }
 
     public void RestoreHealth(int amount)
@@ -140,6 +166,18 @@ public sealed class PlayerVitals : MonoBehaviour
 
         energyRegenerationTimer -= pointsToRestore * secondsPerRegenerationPoint;
         SetEnergy(currentEnergy + pointsToRestore);
+    }
+
+    private void ApplyBurnTick()
+    {
+        if (burnTicksRemaining <= 0 || Time.time < nextBurnTickAt)
+        {
+            return;
+        }
+
+        burnTicksRemaining--;
+        nextBurnTickAt = Time.time + burnInterval;
+        ReceiveStatusDamage(burnDamagePerTick);
     }
 
     private void SetHealth(int value)

@@ -85,7 +85,7 @@ public static class InventorySceneSetup
 
             CreateItemPickup("Coletavel - Graveto 1", InventoryItemId.Stick, 1, new Vector2(-8f, -2f), placeholderSprite, new Color(0.55f, 0.35f, 0.18f));
             CreateItemPickup("Coletavel - Graveto 2", InventoryItemId.Stick, 1, new Vector2(-6f, -6f), placeholderSprite, new Color(0.62f, 0.4f, 0.2f));
-            CreateItemPickup("Mercearia - Pao", InventoryItemId.Bread, 1, new Vector2(-8f, 5.5f), placeholderSprite, new Color(0.88f, 0.69f, 0.36f));
+            CreateShopItemPickup("Mercearia - Pao", InventoryItemId.Bread, 1, WorldItemPickup2D.PrototypeBreadPrice, new Vector2(-8f, 5.5f), placeholderSprite);
             CreateItemPickup("Coletavel - Dedo humano", InventoryItemId.HumanFinger, 1, new Vector2(8f, 6f), placeholderSprite, new Color(0.85f, 0.58f, 0.53f));
             CreateCoinChest(new Vector2(4f, -5f), placeholderSprite);
             GameObject mutantRat = CreateMutantRat(new Vector2(10f, -5f), placeholderSprite);
@@ -119,6 +119,13 @@ public static class InventorySceneSetup
         GameObject pickupObject = CreatePickupObject(objectName, position, sprite, color, 0.55f);
         WorldItemPickup2D pickup = pickupObject.AddComponent<WorldItemPickup2D>();
         pickup.ConfigureItem(itemId, quantity);
+    }
+
+    private static void CreateShopItemPickup(string objectName, InventoryItemId itemId, int quantity, int price, Vector2 position, Sprite sprite)
+    {
+        GameObject shopObject = CreatePickupObject(objectName, position, sprite, new Color(0.88f, 0.69f, 0.36f), 0.65f);
+        WorldItemPickup2D shop = shopObject.AddComponent<WorldItemPickup2D>();
+        shop.ConfigureShopItem(itemId, quantity, price, "Mercearia");
     }
 
     private static void CreateCoinChest(Vector2 position, Sprite sprite)

@@ -12,6 +12,7 @@ public sealed class PlayerCombat2D : MonoBehaviour
     [SerializeField, Min(1)] private int heavyEnergyCost = 25;
     [SerializeField, Min(0f)] private float basicCooldown = 0.35f;
     [SerializeField, Min(0f)] private float heavyCooldown = 0.7f;
+    [SerializeField, Min(0.05f)] private float holdActionThreshold = 0.22f;
 
     [Header("Arco e flechas")]
     [SerializeField, Min(1)] private int arrowDamage = 18;
@@ -48,6 +49,10 @@ public sealed class PlayerCombat2D : MonoBehaviour
     private Camera mainCamera;
     private Vector2 aimDirection = Vector2.down;
     private float nextAttackTime;
+    private bool leftActionStarted;
+    private bool rightActionStarted;
+    private float leftActionStartedAt;
+    private float rightActionStartedAt;
 
     private void Awake()
     {
@@ -63,18 +68,17 @@ public sealed class PlayerCombat2D : MonoBehaviour
 
     private void Update()
     {
-        bool controlsBlocked = IsDialogueOpen() || (inventory != null && inventory.IsOpen);
+        bool controlsBlocked = IsDialogueOpen() || (inventory != null && inventory.IsOpen) || Time.timeScale == 0f;
         Keyboard keyboard = Keyboard.current;
-        bool blockHeld = !controlsBlocked && keyboard != null &&
-            (keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed);
-        if (vitals != null)
+        if (controlsBlocked)
         {
-            vitals.SetBlocking(blockHeld);
+            CancelMouseActions();
+            return;
         }
 
-        if (controlsBlocked || blockHeld)
+        if (vitals != null)
         {
-            return;
+            vitals.SetBlocking(false);
         }
 
         Mouse mouse = Mouse.current;
@@ -85,24 +89,31 @@ public sealed class PlayerCombat2D : MonoBehaviour
 
         if (keyboard != null)
         {
-            if (keyboard.tabKey.wasPressedThisFrame && powerLoadout != null)
+            if (keyboard.tabKey.wasPressedThisFrame && equipment != null)
             {
-                powerLoadout.CycleContactPower();
+                equipment.SwapWeaponRoles();
             }
 
-            if (keyboard.qKey.wasPressedThisFrame)
+            if (keyboard.zKey.wasPressedThisFrame)
             {
-                TryMagneticShot();
+                if (powerLoadout != null && powerLoadout.EquippedContactPower == ContactPowerId.SpoonMagnetism)
+                {
+                    TryMagneticShot();
+                }
+                else
+                {
+                    TryGloveUppercut();
+                }
             }
 
-            if (keyboard.fKey.wasPressedThisFrame)
-            {
-                TryGloveUppercut();
-            }
-
-            if (keyboard.gKey.wasPressedThisFrame)
+            if (keyboard.xKey.wasPressedThisFrame)
             {
                 TryGloveSlam();
+            }
+
+            if (keyboard.cKey.wasPressedThisFrame)
+            {
+                TryPoisonShot();
             }
         }
 
@@ -113,26 +124,82 @@ public sealed class PlayerCombat2D : MonoBehaviour
 
         if (mouse.leftButton.wasPressedThisFrame)
         {
-            if (equipment != null && equipment.EquippedWeapon == InventoryItemId.Bow)
-            {
-                TryBowShot();
-            }
-            else
-            {
-                TryAttack(basicDamage, 0, basicCooldown);
-            }
+            leftActionStarted = true;
+            leftActionStartedAt = Time.unscaledTime;
         }
-        else if (mouse.rightButton.wasPressedThisFrame)
+
+        if (mouse.rightButton.wasPressedThisFrame)
         {
-            if (powerLoadout != null && powerLoadout.ActiveAbsorptionPower == AbsorptionPowerId.PoisonApple)
+            rightActionStarted = true;
+            rightActionStartedAt = Time.unscaledTime;
+        }
+
+        bool rightButtonHeldForBlock = rightActionStarted && mouse.rightButton.isPressed &&
+            Time.unscaledTime - rightActionStartedAt >= holdActionThreshold;
+        if (vitals != null)
+        {
+            vitals.SetBlocking(rightButtonHeldForBlock);
+        }
+
+        if (mouse.leftButton.wasReleasedThisFrame && leftActionStarted)
+        {
+            float heldFor = Time.unscaledTime - leftActionStartedAt;
+            leftActionStarted = false;
+            UsePrimaryWeapon(heldFor >= holdActionThreshold);
+        }
+
+        if (mouse.rightButton.wasReleasedThisFrame && rightActionStarted)
+        {
+            float heldFor = Time.unscaledTime - rightActionStartedAt;
+            rightActionStarted = false;
+            if (vitals != null) vitals.SetBlocking(false);
+            if (heldFor < holdActionThreshold)
             {
-                TryPoisonShot();
-            }
-            else
-            {
-                TryAttack(heavyDamage, heavyEnergyCost, heavyCooldown);
+                UseSecondaryWeapon();
             }
         }
+    }
+
+    private void CancelMouseActions()
+    {
+        leftActionStarted = false;
+        rightActionStarted = false;
+        if (vitals != null)
+        {
+            vitals.SetBlocking(false);
+        }
+    }
+
+    private void UsePrimaryWeapon(bool charged)
+    {
+        InventoryItemId weapon = equipment != null ? equipment.EquippedPrimaryWeapon : InventoryItemId.None;
+        if (weapon == InventoryItemId.Bow)
+        {
+            TryBowShot(charged);
+            return;
+        }
+
+        TryAttack(charged ? heavyDamage : basicDamage,
+            charged ? heavyEnergyCost : 0,
+            charged ? heavyCooldown : basicCooldown,
+            weapon);
+    }
+
+    private void UseSecondaryWeapon()
+    {
+        InventoryItemId weapon = equipment != null ? equipment.EquippedSecondaryWeapon : InventoryItemId.None;
+        if (weapon == InventoryItemId.None)
+        {
+            return;
+        }
+
+        if (weapon == InventoryItemId.Bow)
+        {
+            TryBowShot(false);
+            return;
+        }
+
+        TryAttack(basicDamage, 0, basicCooldown, weapon);
     }
 
     private bool IsDialogueOpen()
@@ -162,7 +229,7 @@ public sealed class PlayerCombat2D : MonoBehaviour
         }
     }
 
-    private void TryAttack(int damage, int energyCost, float cooldown)
+    private void TryAttack(int damage, int energyCost, float cooldown, InventoryItemId weapon = InventoryItemId.None)
     {
         if (Time.time < nextAttackTime || vitals == null)
         {
@@ -176,7 +243,8 @@ public sealed class PlayerCombat2D : MonoBehaviour
 
         if (equipment != null)
         {
-            damage = equipment.ApplyAttackBonus(damage);
+            InventoryItemId weaponForBonus = weapon != InventoryItemId.None ? weapon : equipment.EquippedPrimaryWeapon;
+            damage = equipment.ApplyAttackBonus(damage, weaponForBonus);
         }
 
         if (powerLoadout != null && powerLoadout.EquippedContactPower == ContactPowerId.RedGloveStrength)
@@ -253,9 +321,11 @@ public sealed class PlayerCombat2D : MonoBehaviour
         metalProjectile.Initialize(aimDirection, magneticProjectileSpeed, magneticDamage);
     }
 
-    private void TryBowShot()
+    private void TryBowShot(bool charged)
     {
-        if (inventory == null || inventory.CountItem(InventoryItemId.Arrow) < 1 || Time.time < nextAttackTime)
+        int energyCost = charged ? heavyEnergyCost : 0;
+        if (inventory == null || inventory.CountItem(InventoryItemId.Arrow) < 1 || Time.time < nextAttackTime ||
+            vitals == null || vitals.CurrentEnergy < energyCost)
         {
             return;
         }
@@ -269,6 +339,12 @@ public sealed class PlayerCombat2D : MonoBehaviour
 
         if (!inventory.TryRemoveItem(InventoryItemId.Arrow))
         {
+            return;
+        }
+
+        if (!vitals.TrySpendEnergy(energyCost))
+        {
+            inventory.TryAddItem(InventoryItemId.Arrow);
             return;
         }
 
@@ -293,7 +369,8 @@ public sealed class PlayerCombat2D : MonoBehaviour
         collider.radius = 0.2f;
 
         ArrowProjectile2D arrowProjectile = arrow.AddComponent<ArrowProjectile2D>();
-        arrowProjectile.Initialize(transform, aimDirection, arrowProjectileSpeed, arrowDamage);
+        int damage = charged ? Mathf.RoundToInt(arrowDamage * 1.75f) : arrowDamage;
+        arrowProjectile.Initialize(transform, aimDirection, arrowProjectileSpeed, damage);
     }
 
     private void TryGloveUppercut()
@@ -303,7 +380,8 @@ public sealed class PlayerCombat2D : MonoBehaviour
             return;
         }
 
-        TryAttack(gloveUppercutDamage, gloveUppercutEnergyCost, heavyCooldown);
+        TryAttack(gloveUppercutDamage, gloveUppercutEnergyCost, heavyCooldown,
+            equipment != null ? equipment.EquippedPrimaryWeapon : InventoryItemId.None);
     }
 
     private void TryGloveSlam()
@@ -323,7 +401,7 @@ public sealed class PlayerCombat2D : MonoBehaviour
         int damage = Mathf.RoundToInt(gloveSlamDamage * gloveBaseDamageMultiplier);
         if (equipment != null)
         {
-            damage = equipment.ApplyAttackBonus(damage);
+            damage = equipment.ApplyAttackBonus(damage, equipment.EquippedPrimaryWeapon);
         }
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, gloveSlamRadius);
         HashSet<EnemyHealth2D> damagedEnemies = new HashSet<EnemyHealth2D>();

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Flowers_Red_Animacao_48
+  m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
+  m_AnimatedSprites:
+  - {fileID: 1734101155013863602, guid: 25de5d1a508f45548b3943817223e9f7, type: 3}
+  - {fileID: -359226540220140982, guid: 25de5d1a508f45548b3943817223e9f7, type: 3}
+  - {fileID: 2202295882832000369, guid: 25de5d1a508f45548b3943817223e9f7, type: 3}
+  - {fileID: -6110004762652186304, guid: 25de5d1a508f45548b3943817223e9f7, type: 3}
+  - {fileID: -437053785866590779, guid: 25de5d1a508f45548b3943817223e9f7, type: 3}
+  - {fileID: -8141178614882281563, guid: 25de5d1a508f45548b3943817223e9f7, type: 3}
+  - {fileID: -4818607001456485138, guid: 25de5d1a508f45548b3943817223e9f7, type: 3}
+  - {fileID: 4686274074438067013, guid: 25de5d1a508f45548b3943817223e9f7, type: 3}
+  m_MinSpeed: 0.5555555
+  m_MaxSpeed: 0.5555555
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0

@@ -34,7 +34,7 @@ public sealed class PlayerMovement2D : MonoBehaviour
     {
         bool dialogueOpen = interactor != null && interactor.DialogueManager != null && interactor.DialogueManager.BlocksWorldInput;
         bool inventoryOpen = inventory != null && inventory.IsOpen;
-        bool controlsBlocked = dialogueOpen || inventoryOpen;
+        bool controlsBlocked = dialogueOpen || inventoryOpen || Time.timeScale == 0f;
         Keyboard keyboard = Keyboard.current;
 
         if (controlsBlocked)
@@ -57,7 +57,7 @@ public sealed class PlayerMovement2D : MonoBehaviour
             FacingDirection = moveInput.normalized;
         }
 
-        sprintRequested = keyboard != null && (keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed);
+        sprintRequested = keyboard != null && (keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed);
 
         if (keyboard != null && keyboard.spaceKey.wasPressedThisFrame && Time.time >= nextDashAvailableAt)
         {

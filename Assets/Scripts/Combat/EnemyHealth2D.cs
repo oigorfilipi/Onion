@@ -6,6 +6,12 @@ public sealed class EnemyHealth2D : MonoBehaviour
 {
     [SerializeField, Min(1)] private int maxHealth = 60;
     [SerializeField, Min(0)] private int currentHealth = 60;
+    [SerializeField] private bool isBoss;
+    [SerializeField] private string bossDisplayName = "Chefe";
+    [SerializeField, Min(0f)] private float fullRegenerationDelay = 10f;
+    [SerializeField, Min(0f)] private float bossRegenerationDelayAfterDamage = 6f;
+    [SerializeField, Min(0.1f)] private float bossRegenerationInterval = 20f;
+    [SerializeField, Min(1)] private int bossRegenerationAmount = 1;
 
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
@@ -14,11 +20,17 @@ public sealed class EnemyHealth2D : MonoBehaviour
     private int poisonTicksRemaining;
     private float poisonInterval;
     private float nextPoisonTickAt;
+    private int damageFloor;
+    private float lastDamageAt;
+    private float nextBossRegenerationAt;
+    private bool hasTakenDamage;
 
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
+    public bool IsBoss => isBoss;
     public event Action<EnemyHealth2D> Died;
     public event Action<EnemyHealth2D, int, int> HealthChanged;
+    public string BossDisplayName => bossDisplayName;
 
     private bool damageLocked;
 
@@ -44,6 +56,25 @@ public sealed class EnemyHealth2D : MonoBehaviour
             nextPoisonTickAt = Time.time + poisonInterval;
             ApplyDamage(poisonDamagePerTick);
         }
+
+        if (!isBoss && hasTakenDamage && currentHealth < maxHealth && Time.time >= lastDamageAt + fullRegenerationDelay)
+        {
+            currentHealth = maxHealth;
+            hasTakenDamage = false;
+            HealthChanged?.Invoke(this, currentHealth, maxHealth);
+        }
+
+        if (isBoss && !damageLocked && hasTakenDamage && currentHealth < maxHealth &&
+            Time.time >= lastDamageAt + bossRegenerationDelayAfterDamage && Time.time >= nextBossRegenerationAt)
+        {
+            currentHealth = Mathf.Min(maxHealth, currentHealth + bossRegenerationAmount);
+            nextBossRegenerationAt = Time.time + bossRegenerationInterval;
+            HealthChanged?.Invoke(this, currentHealth, maxHealth);
+            if (currentHealth >= maxHealth)
+            {
+                hasTakenDamage = false;
+            }
+        }
     }
 
     public void ReceiveDamage(int amount)
@@ -54,6 +85,35 @@ public sealed class EnemyHealth2D : MonoBehaviour
     public void SetDamageLocked(bool locked)
     {
         damageLocked = locked;
+    }
+
+    public void SetDamageFloor(int healthFloor)
+    {
+        damageFloor = Mathf.Clamp(healthFloor, 0, maxHealth);
+    }
+
+    public void ConfigureBoss(int health, string displayName)
+    {
+        maxHealth = Mathf.Max(1, health);
+        currentHealth = maxHealth;
+        damageFloor = 0;
+        damageLocked = false;
+        isBoss = true;
+        bossDisplayName = string.IsNullOrWhiteSpace(displayName) ? "Chefe" : displayName;
+        hasTakenDamage = false;
+        nextBossRegenerationAt = 0f;
+    }
+
+    public void ConfigureRegularEnemy(int health)
+    {
+        maxHealth = Mathf.Max(1, health);
+        currentHealth = maxHealth;
+        isBoss = false;
+        bossDisplayName = string.Empty;
+        damageFloor = 0;
+        damageLocked = false;
+        hasTakenDamage = false;
+        nextBossRegenerationAt = 0f;
     }
 
     public void DefeatImmediately()
@@ -89,7 +149,17 @@ public sealed class EnemyHealth2D : MonoBehaviour
             return;
         }
 
-        currentHealth = Mathf.Max(0, currentHealth - amount);
+        int previousHealth = currentHealth;
+        currentHealth = Mathf.Max(damageFloor, currentHealth - amount);
+        if (currentHealth < previousHealth)
+        {
+            lastDamageAt = Time.time;
+            hasTakenDamage = true;
+            if (isBoss)
+            {
+                nextBossRegenerationAt = Time.time + bossRegenerationDelayAfterDamage;
+            }
+        }
         HealthChanged?.Invoke(this, currentHealth, maxHealth);
         if (currentHealth == 0 && damageLocked)
         {
@@ -109,8 +179,19 @@ public sealed class EnemyHealth2D : MonoBehaviour
 
     private void OnGUI()
     {
+        if (currentHealth <= 0)
+        {
+            return;
+        }
+
+        if (isBoss)
+        {
+            DrawBossHealthBar();
+            return;
+        }
+
         Camera sceneCamera = Camera.main;
-        if (sceneCamera == null || currentHealth <= 0)
+        if (sceneCamera == null)
         {
             return;
         }
@@ -129,6 +210,29 @@ public sealed class EnemyHealth2D : MonoBehaviour
         GUI.color = Color.black;
         GUI.DrawTexture(bar, Texture2D.whiteTexture);
         GUI.color = new Color(0.85f, 0.16f, 0.12f);
+        bar.width *= (float)currentHealth / maxHealth;
+        GUI.DrawTexture(bar, Texture2D.whiteTexture);
+        GUI.color = Color.white;
+    }
+
+    private void DrawBossHealthBar()
+    {
+        float width = Mathf.Min(520f, Screen.width - 40f);
+        float left = (Screen.width - width) * 0.5f;
+        const float top = 18f;
+
+        GUIStyle nameStyle = new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleCenter,
+            fontSize = 18,
+            fontStyle = FontStyle.Bold
+        };
+        GUI.Label(new Rect(left, top, width, 26f), $"{bossDisplayName}  {currentHealth}/{maxHealth}", nameStyle);
+
+        Rect bar = new Rect(left, top + 28f, width, 16f);
+        GUI.color = Color.black;
+        GUI.DrawTexture(bar, Texture2D.whiteTexture);
+        GUI.color = new Color(0.78f, 0.12f, 0.12f);
         bar.width *= (float)currentHealth / maxHealth;
         GUI.DrawTexture(bar, Texture2D.whiteTexture);
         GUI.color = Color.white;

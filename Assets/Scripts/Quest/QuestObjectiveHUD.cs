@@ -15,7 +15,7 @@ public sealed class QuestObjectiveHUD : MonoBehaviour
 
     private void OnGUI()
     {
-        if (quest == null)
+        if (quest == null || Time.timeScale == 0f)
         {
             return;
         }
@@ -31,6 +31,8 @@ public sealed class QuestObjectiveHUD : MonoBehaviour
             prologueStory != null && prologueStory.HasPrologueObjective
             ? prologueStory.PrologueObjectiveText
             : quest.ObjectiveText;
-        GUI.Box(new Rect(20f, 20f, 370f, 66f), "Objetivo: " + objective, objectiveStyle);
+        float panelWidth = Mathf.Min(370f, Screen.width - 40f);
+        float panelX = Screen.width - panelWidth - 20f;
+        GUI.Box(new Rect(panelX, 20f, panelWidth, 66f), "Objetivo: " + objective, objectiveStyle);
     }
 }

@@ -2,10 +2,13 @@ using UnityEngine;
 
 public sealed class WorldItemPickup2D : Interactable2D
 {
+    public const int PrototypeBreadPrice = 3;
+
     private enum PickupKind
     {
         InventoryItem,
-        Coins
+        Coins,
+        ShopItem
     }
 
     [SerializeField] private PickupKind kind;
@@ -13,6 +16,7 @@ public sealed class WorldItemPickup2D : Interactable2D
     [SerializeField, Min(1)] private int quantity = 1;
     [SerializeField] private string displayName;
     [SerializeField, Min(0)] private int experienceReward = 5;
+    [SerializeField, Min(0)] private int coinPrice = 3;
 
     public void ConfigureItem(InventoryItemId id, int amount, string itemName = null)
     {
@@ -32,8 +36,25 @@ public sealed class WorldItemPickup2D : Interactable2D
         PromptText = "Abrir " + displayName.ToLowerInvariant();
     }
 
+    public void ConfigureShopItem(InventoryItemId id, int amount, int price, string shopName = "Mercearia")
+    {
+        kind = PickupKind.ShopItem;
+        itemId = id;
+        quantity = Mathf.Max(1, amount);
+        coinPrice = Mathf.Max(0, price);
+        displayName = string.IsNullOrWhiteSpace(shopName) ? "Mercearia" : shopName;
+        experienceReward = 0;
+        PromptText = $"Comprar {InventoryItemCatalog.GetDisplayName(id).ToLowerInvariant()} ({coinPrice} moedas)";
+    }
+
     public override void Interact(PlayerInteractor2D interactor)
     {
+        if (kind == PickupKind.ShopItem)
+        {
+            PurchaseItem(interactor);
+            return;
+        }
+
         string result;
         if (kind == PickupKind.Coins)
         {
@@ -66,6 +87,40 @@ public sealed class WorldItemPickup2D : Interactable2D
         }
 
         StartDialogue(interactor, result, () => Destroy(gameObject));
+    }
+
+    private void PurchaseItem(PlayerInteractor2D interactor)
+    {
+        PlayerWallet2D wallet = interactor.GetComponent<PlayerWallet2D>();
+        PlayerInventory2D inventory = interactor.GetComponent<PlayerInventory2D>();
+        if (wallet == null || inventory == null)
+        {
+            StartDialogue(interactor, "A compra nao pode ser concluida porque falta a carteira ou o inventario.");
+            return;
+        }
+
+        if (!inventory.CanAddItem(itemId, quantity))
+        {
+            StartDialogue(interactor, "Seu inventario esta cheio. Libere espaco antes de comprar.");
+            return;
+        }
+
+        if (!wallet.TrySpendCoins(coinPrice))
+        {
+            StartDialogue(interactor, $"Voce precisa de {coinPrice} moedas para comprar {InventoryItemCatalog.GetDisplayName(itemId).ToLowerInvariant()}.");
+            return;
+        }
+
+        if (!inventory.TryAddItem(itemId, quantity))
+        {
+            wallet.AddCoins(coinPrice);
+            StartDialogue(interactor, "A compra falhou. Suas moedas foram devolvidas.");
+            return;
+        }
+
+        StartDialogue(
+            interactor,
+            $"Voce comprou {quantity}x {InventoryItemCatalog.GetDisplayName(itemId).ToLowerInvariant()} por {coinPrice} moedas. Saldo: {wallet.Coins}.");
     }
 
     private void StartDialogue(PlayerInteractor2D interactor, string line, System.Action finished = null)

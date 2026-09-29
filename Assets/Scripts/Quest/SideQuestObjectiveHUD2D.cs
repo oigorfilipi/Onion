@@ -14,7 +14,7 @@ public sealed class SideQuestObjectiveHUD2D : MonoBehaviour
 
     private void OnGUI()
     {
-        if (sideQuest == null || !sideQuest.IsTracking)
+        if (sideQuest == null || !sideQuest.IsTracking || Time.timeScale == 0f)
         {
             return;
         }
@@ -26,6 +26,8 @@ public sealed class SideQuestObjectiveHUD2D : MonoBehaviour
             wordWrap = true
         };
 
-        GUI.Box(new Rect(20f, 94f, 370f, 58f), "Missao secundaria: " + sideQuest.ObjectiveText, style);
+        float panelWidth = Mathf.Min(370f, Screen.width - 40f);
+        float panelX = Screen.width - panelWidth - 20f;
+        GUI.Box(new Rect(panelX, 94f, panelWidth, 58f), "Missao secundaria: " + sideQuest.ObjectiveText, style);
     }
 }

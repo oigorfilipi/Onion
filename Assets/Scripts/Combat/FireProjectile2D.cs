@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -7,25 +8,34 @@ public sealed class FireProjectile2D : MonoBehaviour
     private Vector2 direction;
     private float speed;
     private int damage;
+    private float maxTravelDistance;
+    private float distanceTravelled;
     private float expiresAt;
+
+    public event Action<FireProjectile2D> Finished;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
     }
 
-    public void Initialize(Vector2 travelDirection, float travelSpeed, int hitDamage)
+    public void Initialize(Vector2 travelDirection, float travelSpeed, int hitDamage, float travelDistance = 9f)
     {
         direction = travelDirection.normalized;
         speed = Mathf.Max(0f, travelSpeed);
         damage = Mathf.Max(0, hitDamage);
-        expiresAt = Time.time + 5f;
+        maxTravelDistance = Mathf.Max(0.1f, travelDistance);
+        expiresAt = Time.time + Mathf.Max(5f, maxTravelDistance / Mathf.Max(0.1f, speed) + 1f);
     }
 
     private void FixedUpdate()
     {
-        body.MovePosition(body.position + direction * speed * Time.fixedDeltaTime);
-        if (Time.time >= expiresAt)
+        float stepDistance = speed * Time.fixedDeltaTime;
+        float remainingDistance = maxTravelDistance - distanceTravelled;
+        stepDistance = Mathf.Min(stepDistance, remainingDistance);
+        body.MovePosition(body.position + direction * stepDistance);
+        distanceTravelled += stepDistance;
+        if (distanceTravelled >= maxTravelDistance || Time.time >= expiresAt)
         {
             Destroy(gameObject);
         }
@@ -37,8 +47,14 @@ public sealed class FireProjectile2D : MonoBehaviour
         if (playerVitals != null)
         {
             playerVitals.ReceiveDamage(damage);
+            playerVitals.ApplyBurn();
         }
 
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        Finished?.Invoke(this);
     }
 }

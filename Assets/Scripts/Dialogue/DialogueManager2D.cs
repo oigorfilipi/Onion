@@ -33,13 +33,13 @@ public sealed class DialogueManager2D : MonoBehaviour
 
     private void Update()
     {
-        if (!isOpen || Time.frameCount == openedOnFrame)
+        if (!isOpen || Time.frameCount == openedOnFrame || Time.timeScale == 0f)
         {
             return;
         }
 
-        Keyboard keyboard = Keyboard.current;
-        if (keyboard != null && keyboard.eKey.wasPressedThisFrame)
+        Mouse mouse = Mouse.current;
+        if (mouse != null && mouse.leftButton.wasPressedThisFrame)
         {
             Advance();
         }
@@ -68,7 +68,7 @@ public sealed class DialogueManager2D : MonoBehaviour
 
     private void OnGUI()
     {
-        if (!isOpen)
+        if (!isOpen || Time.timeScale == 0f)
         {
             return;
         }
@@ -91,6 +91,6 @@ public sealed class DialogueManager2D : MonoBehaviour
 
         GUI.Label(new Rect(panelRect.x + 24f, panelRect.y + 16f, panelRect.width - 48f, 32f), speakerName, speakerStyle);
         GUI.Label(new Rect(panelRect.x + 24f, panelRect.y + 54f, panelRect.width - 48f, 78f), lines[lineIndex], lineStyle);
-        GUI.Label(new Rect(panelRect.x + 24f, panelRect.y + 144f, panelRect.width - 48f, 28f), "Aperte E para continuar", GUI.skin.label);
+        GUI.Label(new Rect(panelRect.x + 24f, panelRect.y + 144f, panelRect.width - 48f, 28f), "Clique com o botao esquerdo para continuar", GUI.skin.label);
     }
 }

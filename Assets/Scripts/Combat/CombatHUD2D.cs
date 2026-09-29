@@ -25,86 +25,132 @@ public sealed class CombatHUD2D : MonoBehaviour
 
     private void OnGUI()
     {
-        if (playerVitals == null)
+        if (playerVitals == null || Time.timeScale == 0f)
         {
             return;
         }
 
-        float panelWidth = 270f;
-        float x = Mathf.Max(10f, Screen.width - panelWidth - 20f);
-        Rect panel = new Rect(x, 20f, panelWidth, 360f);
-        GUI.Box(panel, GUIContent.none);
+        DrawResourcePanel();
+        DrawAbilityCross();
+        DrawControlsHint();
+    }
 
-        GUI.Label(new Rect(x + 12f, 27f, panelWidth - 24f, 20f), $"Vida  {playerVitals.CurrentHealth}/{playerVitals.MaxHealth}");
-        DrawBar(new Rect(x + 12f, 49f, panelWidth - 24f, 14f), (float)playerVitals.CurrentHealth / playerVitals.MaxHealth, new Color(0.8f, 0.18f, 0.18f));
+    private void DrawResourcePanel()
+    {
+        const float x = 20f;
+        const float width = 270f;
+        const float labelHeight = 20f;
+        GUI.Box(new Rect(x, 20f, width, playerVitals.IsBurning ? 162f : 140f), GUIContent.none);
 
-        GUI.Label(new Rect(x + 12f, 68f, panelWidth - 24f, 20f), $"Energia  {playerVitals.CurrentEnergy}/{playerVitals.MaxEnergy}");
-        DrawBar(new Rect(x + 12f, 90f, panelWidth - 24f, 14f), (float)playerVitals.CurrentEnergy / playerVitals.MaxEnergy, new Color(0.2f, 0.58f, 0.95f));
-        bool bowEquipped = equipment != null && equipment.EquippedWeapon == InventoryItemId.Bow;
-        bool swordEquipped = equipment != null && equipment.EquippedWeapon == InventoryItemId.Sword;
-        string weaponControls = bowEquipped
-            ? "Esq: arco (1 flecha) | Dir: pesado"
-            : swordEquipped
-                ? "Esq: espada | Dir: pesado"
-                : "Esq: ataque basico | Dir: pesado";
-        GUI.Label(new Rect(x + 12f, 108f, panelWidth - 24f, 20f), weaponControls);
+        GUI.Label(new Rect(x + 12f, 27f, width - 24f, labelHeight), $"Vida  {playerVitals.CurrentHealth}/{playerVitals.MaxHealth}");
+        DrawBar(new Rect(x + 12f, 49f, width - 24f, 14f), (float)playerVitals.CurrentHealth / playerVitals.MaxHealth, new Color(0.8f, 0.18f, 0.18f));
 
-        string contactPower = "nenhum";
-        if (powerLoadout != null)
-        {
-            if (powerLoadout.EquippedContactPower == ContactPowerId.SpoonMagnetism) contactPower = "Magnetismo";
-            else if (powerLoadout.EquippedContactPower == ContactPowerId.RedGloveStrength) contactPower = "Forca da luva";
-        }
-        int metalCount = materialPouch != null ? materialPouch.MetalScrapCount : 0;
-        string absorptionPower = powerLoadout != null && powerLoadout.ActiveAbsorptionPower == AbsorptionPowerId.PoisonApple
-            ? "Veneno"
-            : "nenhum";
-        GUI.Label(new Rect(x + 12f, 130f, panelWidth - 24f, 18f), $"Contato: {contactPower} | Metal: {metalCount}");
-        GUI.Label(new Rect(x + 12f, 146f, panelWidth - 24f, 18f), $"Absorcao: {absorptionPower}");
-        string contactAbilityOne = "Q: sem poder de Contato ativo";
-        string contactAbilityTwo = "F/G: sem poder de Contato ativo";
-        if (contactPower == "Magnetismo")
-        {
-            contactAbilityOne = "Q: magnetismo (1 metal + 15 energia)";
-            contactAbilityTwo = "F/G: requer a luva vermelha";
-        }
-        else if (contactPower == "Forca da luva")
-        {
-            contactAbilityOne = "F: soco forte (15 energia)";
-            contactAbilityTwo = "G: impacto em area (25 energia)";
-        }
-        GUI.Label(new Rect(x + 12f, 164f, panelWidth - 24f, 18f), contactAbilityOne);
-        GUI.Label(new Rect(x + 12f, 182f, panelWidth - 24f, 18f), contactAbilityTwo);
-        GUI.Label(new Rect(x + 12f, 200f, panelWidth - 24f, 18f), absorptionPower == "Veneno"
-            ? "Direito: veneno (20 energia)"
-            : "Direito: ataque pesado (25 energia)");
-        GUI.Label(new Rect(x + 12f, 218f, panelWidth - 24f, 18f), "Tab: alternar poder de Contato");
-        int arrowCount = inventory != null ? inventory.CountItem(InventoryItemId.Arrow) : 0;
-        string weaponName = equipment == null || equipment.EquippedWeapon == InventoryItemId.None
-            ? "nenhuma"
-            : InventoryItemCatalog.GetDisplayName(equipment.EquippedWeapon);
-        GUI.Label(new Rect(x + 12f, 238f, panelWidth - 24f, 18f), $"Arma: {weaponName} | Flechas: {arrowCount}");
+        GUI.Label(new Rect(x + 12f, 68f, width - 24f, labelHeight), $"Estamina  {playerVitals.CurrentEnergy}/{playerVitals.MaxEnergy}");
+        DrawBar(new Rect(x + 12f, 90f, width - 24f, 14f), (float)playerVitals.CurrentEnergy / playerVitals.MaxEnergy, new Color(0.2f, 0.58f, 0.95f));
 
         if (progression != null)
         {
-            string experienceText = progression.IsAtMaximumLevel
-                ? $"Nivel {progression.Level} | nivel maximo"
-                : $"Nivel {progression.Level} | EXP {progression.CurrentExperience}/{progression.ExperienceRequiredForNextLevel}";
-            GUI.Label(new Rect(x + 12f, 260f, panelWidth - 24f, 18f), experienceText);
-            DrawBar(new Rect(x + 12f, 282f, panelWidth - 24f, 14f), progression.ExperienceProgress, new Color(0.55f, 0.78f, 0.25f));
+            string xpText = progression.IsAtMaximumLevel
+                ? $"XP  Nivel {progression.Level} - maximo"
+                : $"XP  Nivel {progression.Level} | {progression.CurrentExperience}/{progression.ExperienceRequiredForNextLevel}";
+            GUI.Label(new Rect(x + 12f, 110f, width - 24f, labelHeight), xpText);
+            DrawBar(new Rect(x + 12f, 132f, width - 24f, 12f), progression.ExperienceProgress, new Color(0.55f, 0.78f, 0.25f));
             if (progression.ShowLevelUpNotification)
             {
                 GUI.color = new Color(1f, 0.88f, 0.36f);
-                GUI.Label(new Rect(x + 12f, 301f, panelWidth - 24f, 18f), "Novo nivel!");
+                GUI.Label(new Rect(x + width + 8f, 27f, 150f, 22f), "Novo nivel!");
                 GUI.color = Color.white;
             }
         }
 
-        GUI.Label(new Rect(x + 12f, 320f, panelWidth - 24f, 18f), "Shift: correr | Espaco: dash");
-        int damageReductionPercent = Mathf.RoundToInt((1f - playerVitals.BlockDamageMultiplier) * 100f);
-        GUI.Label(new Rect(x + 12f, 338f, panelWidth - 24f, 18f), playerVitals.IsBlocking
-            ? $"Ctrl: defesa ativa ({damageReductionPercent}% menos dano)"
-            : "Segure Ctrl para defender");
+        if (playerVitals.IsBurning)
+        {
+            GUI.color = new Color(1f, 0.45f, 0.12f);
+            GUI.Label(new Rect(x + 12f, 145f, width - 24f, 22f), "Queimando!", new GUIStyle(GUI.skin.label)
+            {
+                fontStyle = FontStyle.Bold
+            });
+            GUI.color = Color.white;
+        }
+    }
+
+    private void DrawAbilityCross()
+    {
+        float tile = 52f;
+        float gap = 4f;
+        float centerX = 26f;
+        float centerY = Screen.height - 126f;
+
+        DrawAbilityTile(new Rect(centerX + tile + gap, centerY - tile - gap, tile, tile), "Z", GetContactAbilityOne());
+        DrawAbilityTile(new Rect(centerX, centerY, tile, tile), "X", GetContactAbilityTwo());
+        DrawAbilityTile(new Rect(centerX + (tile + gap) * 2f, centerY, tile, tile), "C", GetAbsorptionAbilityOne());
+        DrawAbilityTile(new Rect(centerX + tile + gap, centerY + tile + gap, tile, tile), "V", GetAbsorptionAbilityTwo());
+    }
+
+    private void DrawControlsHint()
+    {
+        const float width = 530f;
+        const float height = 136f;
+        float x = Mathf.Max(10f, Screen.width - width - 18f);
+        float y = Mathf.Max(10f, Screen.height - height - 18f);
+        GUIStyle style = new GUIStyle(GUI.skin.box)
+        {
+            alignment = TextAnchor.MiddleLeft,
+            fontSize = 13,
+            wordWrap = true
+        };
+        string blockInfo = equipment != null && equipment.EquippedShield == InventoryItemId.Shield
+            ? "Escudo: bloqueia 50% e custa 10 estamina por golpe"
+            : equipment != null && equipment.CanBlock
+                ? "Espada: bloqueia 15% e custa 15 estamina por golpe"
+                : "Bloqueio exige escudo ou espada equipada";
+        GUI.Box(new Rect(x, y, width, height),
+            "Espaco: dash | Ctrl: correr | F: interagir\n" +
+            "E: inventario | I: menu | B: mochila (se equipada)\n" +
+            "Clique esquerdo: golpe leve | Segure esquerdo: golpe pesado\n" +
+            "Clique direito: arma secundaria | Segure direito: bloquear | Tab: trocar armas\n" + blockInfo,
+            style);
+    }
+
+    private string GetContactAbilityOne()
+    {
+        if (powerLoadout == null) return "-";
+        if (powerLoadout.EquippedContactPower == ContactPowerId.SpoonMagnetism)
+        {
+            int scrap = materialPouch != null ? materialPouch.MetalScrapCount : 0;
+            return scrap > 0 ? "Magnetismo" : "Sem metal";
+        }
+        return powerLoadout.EquippedContactPower == ContactPowerId.RedGloveStrength ? "Soco forte" : "-";
+    }
+
+    private string GetContactAbilityTwo()
+    {
+        return powerLoadout != null && powerLoadout.EquippedContactPower == ContactPowerId.RedGloveStrength
+            ? "Impacto em area"
+            : "-";
+    }
+
+    private string GetAbsorptionAbilityOne()
+    {
+        return powerLoadout != null && powerLoadout.ActiveAbsorptionPower == AbsorptionPowerId.PoisonApple
+            ? "Veneno"
+            : "-";
+    }
+
+    private string GetAbsorptionAbilityTwo()
+    {
+        return "-";
+    }
+
+    private static void DrawAbilityTile(Rect rect, string key, string abilityName)
+    {
+        GUIStyle style = new GUIStyle(GUI.skin.box)
+        {
+            alignment = TextAnchor.MiddleCenter,
+            fontSize = 10,
+            wordWrap = true
+        };
+        GUI.Box(rect, key + "\n" + abilityName, style);
     }
 
     private static void DrawBar(Rect rect, float normalizedValue, Color fillColor)
