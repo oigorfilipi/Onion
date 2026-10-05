@@ -1,0 +1,470 @@
+fileFormatVersion: 2
+guid: 8a44100c751f0d44587e2c4a76e4e870
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8713526134174943054
+    second: spr_rat_2_death_strip13_0
+  - first:
+      213: -236142950372451129
+    second: spr_rat_2_death_strip13_1
+  - first:
+      213: 9198510905009332869
+    second: spr_rat_2_death_strip13_2
+  - first:
+      213: -7346015775307799309
+    second: spr_rat_2_death_strip13_3
+  - first:
+      213: -3008190338029538300
+    second: spr_rat_2_death_strip13_4
+  - first:
+      213: -5996539136092515654
+    second: spr_rat_2_death_strip13_5
+  - first:
+      213: -1172064867789460054
+    second: spr_rat_2_death_strip13_6
+  - first:
+      213: 9045795955597460814
+    second: spr_rat_2_death_strip13_7
+  - first:
+      213: -3999380327688001398
+    second: spr_rat_2_death_strip13_8
+  - first:
+      213: 5206989003211889576
+    second: spr_rat_2_death_strip13_9
+  - first:
+      213: -2704225299409194630
+    second: spr_rat_2_death_strip13_10
+  - first:
+      213: 1899049096190899369
+    second: spr_rat_2_death_strip13_11
+  - first:
+      213: -1275473025597786602
+    second: spr_rat_2_death_strip13_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spr_rat_2_death_strip13_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 9
+        width: 30
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b87b6fa526531780800000000000000
+      internalID: -8713526134174943054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_death_strip13_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 9
+        width: 29
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cc56dedc3d09bcf0800000000000000
+      internalID: -236142950372451129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_death_strip13_2
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 9
+        width: 29
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58263abaeeca7af70800000000000000
+      internalID: 9198510905009332869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_death_strip13_3
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 9
+        width: 28
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f4ec5eb295bd0a90800000000000000
+      internalID: -7346015775307799309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_death_strip13_4
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 9
+        width: 28
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 404bcfc53d2c046d0800000000000000
+      internalID: -3008190338029538300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_death_strip13_5
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 9
+        width: 28
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab25a7f3d6308cca0800000000000000
+      internalID: -5996539136092515654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_death_strip13_6
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 7
+        width: 29
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aada1bd663dfbbfe0800000000000000
+      internalID: -1172064867789460054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_death_strip13_7
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 6
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e454d04be7f198d70800000000000000
+      internalID: 9045795955597460814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_death_strip13_8
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 7
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a88a87618c85f78c0800000000000000
+      internalID: -3999380327688001398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_death_strip13_9
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 6
+        width: 28
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ab5fcd19e0f24840800000000000000
+      internalID: 5206989003211889576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_death_strip13_10
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 7
+        width: 28
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a713714fa69a87ad0800000000000000
+      internalID: -2704225299409194630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_death_strip13_11
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 6
+        width: 29
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a43c756717ca5a10800000000000000
+      internalID: 1899049096190899369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_death_strip13_12
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 6
+        width: 29
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 616b6ac7a0c9c4ee0800000000000000
+      internalID: -1275473025597786602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      spr_rat_2_death_strip13_0: -8713526134174943054
+      spr_rat_2_death_strip13_1: -236142950372451129
+      spr_rat_2_death_strip13_10: -2704225299409194630
+      spr_rat_2_death_strip13_11: 1899049096190899369
+      spr_rat_2_death_strip13_12: -1275473025597786602
+      spr_rat_2_death_strip13_2: 9198510905009332869
+      spr_rat_2_death_strip13_3: -7346015775307799309
+      spr_rat_2_death_strip13_4: -3008190338029538300
+      spr_rat_2_death_strip13_5: -5996539136092515654
+      spr_rat_2_death_strip13_6: -1172064867789460054
+      spr_rat_2_death_strip13_7: 9045795955597460814
+      spr_rat_2_death_strip13_8: -3999380327688001398
+      spr_rat_2_death_strip13_9: 5206989003211889576
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,470 @@
+fileFormatVersion: 2
+guid: 45cde00877683dc44a4b63e5a5e5eefb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5432369730789430292
+    second: spr_rat_2_bite_strip13_0
+  - first:
+      213: 6023188000231305779
+    second: spr_rat_2_bite_strip13_1
+  - first:
+      213: -8601323864197505405
+    second: spr_rat_2_bite_strip13_2
+  - first:
+      213: 2153691378629015930
+    second: spr_rat_2_bite_strip13_3
+  - first:
+      213: -1811339899079414367
+    second: spr_rat_2_bite_strip13_4
+  - first:
+      213: 3231603338884819941
+    second: spr_rat_2_bite_strip13_5
+  - first:
+      213: -5165293762625553482
+    second: spr_rat_2_bite_strip13_6
+  - first:
+      213: 3184484833241017365
+    second: spr_rat_2_bite_strip13_7
+  - first:
+      213: 5863019841375200612
+    second: spr_rat_2_bite_strip13_8
+  - first:
+      213: -1438182324301648184
+    second: spr_rat_2_bite_strip13_9
+  - first:
+      213: 3228029708834890994
+    second: spr_rat_2_bite_strip13_10
+  - first:
+      213: 4385936591266100011
+    second: spr_rat_2_bite_strip13_11
+  - first:
+      213: 4543046363105642228
+    second: spr_rat_2_bite_strip13_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spr_rat_2_bite_strip13_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 9
+        width: 30
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 414d94cfc77a36b40800000000000000
+      internalID: 5432369730789430292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_bite_strip13_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 9
+        width: 29
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 332be21f299a69350800000000000000
+      internalID: 6023188000231305779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_bite_strip13_2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 9
+        width: 28
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38eda6c6485f1a880800000000000000
+      internalID: -8601323864197505405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_bite_strip13_3
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 9
+        width: 27
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a79f00be5e273ed10800000000000000
+      internalID: 2153691378629015930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_bite_strip13_4
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 9
+        width: 27
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ad21eb65f3dcd6e0800000000000000
+      internalID: -1811339899079414367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_bite_strip13_5
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 9
+        width: 26
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5eb223d6d16f8dc20800000000000000
+      internalID: 3231603338884819941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_bite_strip13_6
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 9
+        width: 26
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bbb92690b03158b0800000000000000
+      internalID: -5165293762625553482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_bite_strip13_7
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 9
+        width: 27
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51c23fd6510913c20800000000000000
+      internalID: 3184484833241017365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_bite_strip13_8
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 9
+        width: 27
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4656c3c6b71ad5150800000000000000
+      internalID: 5863019841375200612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_bite_strip13_9
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 9
+        width: 27
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ce21cdbbcc8a0ce0800000000000000
+      internalID: -1438182324301648184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_bite_strip13_10
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 9
+        width: 27
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f4e287dae34ccc20800000000000000
+      internalID: 3228029708834890994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_bite_strip13_11
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 9
+        width: 27
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b23bdc1971afddc30800000000000000
+      internalID: 4385936591266100011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_rat_2_bite_strip13_12
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 9
+        width: 27
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f6ca0fd8942c0f30800000000000000
+      internalID: 4543046363105642228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      spr_rat_2_bite_strip13_0: 5432369730789430292
+      spr_rat_2_bite_strip13_1: 6023188000231305779
+      spr_rat_2_bite_strip13_10: 3228029708834890994
+      spr_rat_2_bite_strip13_11: 4385936591266100011
+      spr_rat_2_bite_strip13_12: 4543046363105642228
+      spr_rat_2_bite_strip13_2: -8601323864197505405
+      spr_rat_2_bite_strip13_3: 2153691378629015930
+      spr_rat_2_bite_strip13_4: -1811339899079414367
+      spr_rat_2_bite_strip13_5: 3231603338884819941
+      spr_rat_2_bite_strip13_6: -5165293762625553482
+      spr_rat_2_bite_strip13_7: 3184484833241017365
+      spr_rat_2_bite_strip13_8: 5863019841375200612
+      spr_rat_2_bite_strip13_9: -1438182324301648184
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

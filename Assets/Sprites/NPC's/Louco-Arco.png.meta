@@ -1,0 +1,1250 @@
+fileFormatVersion: 2
+guid: fed6737647a142946ba777f31f0b51db
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1986515203282326375
+    second: Louco-Arco_0
+  - first:
+      213: 7880654512613762049
+    second: Louco-Arco_1
+  - first:
+      213: 1654560272272143546
+    second: Louco-Arco_2
+  - first:
+      213: 8784294844913808189
+    second: Louco-Arco_3
+  - first:
+      213: -5663869168884027446
+    second: Louco-Arco_4
+  - first:
+      213: 570011399165054101
+    second: Louco-Arco_5
+  - first:
+      213: -3711863181526077190
+    second: Louco-Arco_6
+  - first:
+      213: -306235127531747821
+    second: Louco-Arco_7
+  - first:
+      213: 8416780951496792288
+    second: Louco-Arco_8
+  - first:
+      213: -3980933144993502833
+    second: Louco-Arco_9
+  - first:
+      213: -4219502272196136760
+    second: Louco-Arco_10
+  - first:
+      213: 150371192951693344
+    second: Louco-Arco_11
+  - first:
+      213: -5842295135354347928
+    second: Louco-Arco_12
+  - first:
+      213: 5169770772466107769
+    second: Louco-Arco_13
+  - first:
+      213: 8173138222278646230
+    second: Louco-Arco_14
+  - first:
+      213: 8095598698433773248
+    second: Louco-Arco_15
+  - first:
+      213: 2858604038522512303
+    second: Louco-Arco_16
+  - first:
+      213: -7966378147886168761
+    second: Louco-Arco_17
+  - first:
+      213: 406649560970240561
+    second: Louco-Arco_18
+  - first:
+      213: 162524977119255438
+    second: Louco-Arco_19
+  - first:
+      213: 5096420578888362101
+    second: Louco-Arco_20
+  - first:
+      213: -7407436685103151406
+    second: Louco-Arco_21
+  - first:
+      213: 4797968843441940775
+    second: Louco-Arco_22
+  - first:
+      213: 6398433481886592334
+    second: Louco-Arco_23
+  - first:
+      213: -6639439998198886912
+    second: Louco-Arco_24
+  - first:
+      213: 349637232786196403
+    second: Louco-Arco_25
+  - first:
+      213: 86589093079502412
+    second: Louco-Arco_26
+  - first:
+      213: -3921083456243402402
+    second: Louco-Arco_27
+  - first:
+      213: -4702153070478026656
+    second: Louco-Arco_28
+  - first:
+      213: -697947077111427640
+    second: Louco-Arco_29
+  - first:
+      213: 3493784425205615039
+    second: Louco-Arco_30
+  - first:
+      213: 5384645665988444439
+    second: Louco-Arco_31
+  - first:
+      213: -2444399879269927968
+    second: Louco-Arco_32
+  - first:
+      213: -1087823591871858725
+    second: Louco-Arco_33
+  - first:
+      213: 9011283490640281855
+    second: Louco-Arco_34
+  - first:
+      213: 4811219084069987734
+    second: Louco-Arco_35
+  - first:
+      213: -8247711340796389539
+    second: Louco-Arco_36
+  - first:
+      213: -120308376946294649
+    second: Louco-Arco_37
+  - first:
+      213: 1770280889151326659
+    second: Louco-Arco_38
+  - first:
+      213: -6856885860761335381
+    second: Louco-Arco_39
+  - first:
+      213: 1398692260982561604
+    second: Louco-Arco_40
+  - first:
+      213: 8297725396623281267
+    second: Louco-Arco_41
+  - first:
+      213: 3472431512874999346
+    second: Louco-Arco_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Louco-Arco_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7635e886d05819b10800000000000000
+      internalID: 1986515203282326375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1042ce59685bd5d60800000000000000
+      internalID: 7880654512613762049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 175
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab431482dcd26f610800000000000000
+      internalID: 1654560272272143546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d33f169ce9518e970800000000000000
+      internalID: 8784294844913808189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acf6166dff4e561b0800000000000000
+      internalID: -5663869168884027446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59c0825f85619e700800000000000000
+      internalID: 570011399165054101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af0794a4a10dc7cc0800000000000000
+      internalID: -3711863181526077190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_7
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 175
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31649b526c800cbf0800000000000000
+      internalID: -306235127531747821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_8
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e89d3e6ea96ec470800000000000000
+      internalID: 8416780951496792288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_9
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 175
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8965128562e0c8c0800000000000000
+      internalID: -3980933144993502833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 143
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c0bbc01a015175c0800000000000000
+      internalID: -4219502272196136760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_11
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 159
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0206654adc9361200800000000000000
+      internalID: 150371192951693344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_12
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 143
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86e1638378ffbeea0800000000000000
+      internalID: -5842295135354347928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_13
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 159
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9750a0f7027beb740800000000000000
+      internalID: 5169770772466107769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_14
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 143
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d91617f8e1dc6170800000000000000
+      internalID: 8173138222278646230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_15
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 159
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ce7248bf18595070800000000000000
+      internalID: 8095598698433773248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_16
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 111
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa3a1ad3a3dcba720800000000000000
+      internalID: 2858604038522512303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_17
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 127
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7458fcc384db17190800000000000000
+      internalID: -7966378147886168761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_18
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 111
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13223b50f95b4a500800000000000000
+      internalID: 406649560970240561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_19
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 127
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8b52580b97614200800000000000000
+      internalID: 162524977119255438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_20
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 111
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 578a1a6b38f1ab640800000000000000
+      internalID: 5096420578888362101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_21
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 127
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d6ca38c49f733990800000000000000
+      internalID: -7407436685103151406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_22
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 79
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 729afbc0e3fc59240800000000000000
+      internalID: 4797968843441940775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_23
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 95
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4de0d6f95dcbc850800000000000000
+      internalID: 6398433481886592334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_24
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 79
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00ec5d7bf78fbd3a0800000000000000
+      internalID: -6639439998198886912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_25
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 95
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b7c874f5392ad400800000000000000
+      internalID: 349637232786196403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_26
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 79
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4e4d664250a33100800000000000000
+      internalID: 86589093079502412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_27
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 95
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5973ff0f538599c0800000000000000
+      internalID: -3921083456243402402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_28
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 47
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06815aa02b89ebeb0800000000000000
+      internalID: -4702153070478026656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_29
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 63
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cd40ccc4d46056f0800000000000000
+      internalID: -697947077111427640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_30
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 47
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb94c228c6a6c7030800000000000000
+      internalID: 3493784425205615039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_31
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 63
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 711869244ba1aba40800000000000000
+      internalID: 5384645665988444439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_32
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 47
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e3bb13c24fb31ed0800000000000000
+      internalID: -2444399879269927968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_33
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 63
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd7303ce43647e0f0800000000000000
+      internalID: -1087823591871858725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_34
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 15
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff0c4f547928e0d70800000000000000
+      internalID: 9011283490640281855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_35
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 31
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 695629a1442e4c240800000000000000
+      internalID: 4811219084069987734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_36
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 15
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d57ded9db3e3a8d80800000000000000
+      internalID: -8247711340796389539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_37
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 31
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 780cc982b24945ef0800000000000000
+      internalID: -120308376946294649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_38
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 15
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c9078ed61d419810800000000000000
+      internalID: 1770280889151326659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_39
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 31
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba90ce393a277d0a0800000000000000
+      internalID: -6856885860761335381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_40
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44b14f56337296310800000000000000
+      internalID: 1398692260982561604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_41
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 0
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37cc775f841772370800000000000000
+      internalID: 8297725396623281267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Louco-Arco_42
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 0
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23e59cf201e803030800000000000000
+      internalID: 3472431512874999346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Louco-Arco_0: 1986515203282326375
+      Louco-Arco_1: 7880654512613762049
+      Louco-Arco_10: -4219502272196136760
+      Louco-Arco_11: 150371192951693344
+      Louco-Arco_12: -5842295135354347928
+      Louco-Arco_13: 5169770772466107769
+      Louco-Arco_14: 8173138222278646230
+      Louco-Arco_15: 8095598698433773248
+      Louco-Arco_16: 2858604038522512303
+      Louco-Arco_17: -7966378147886168761
+      Louco-Arco_18: 406649560970240561
+      Louco-Arco_19: 162524977119255438
+      Louco-Arco_2: 1654560272272143546
+      Louco-Arco_20: 5096420578888362101
+      Louco-Arco_21: -7407436685103151406
+      Louco-Arco_22: 4797968843441940775
+      Louco-Arco_23: 6398433481886592334
+      Louco-Arco_24: -6639439998198886912
+      Louco-Arco_25: 349637232786196403
+      Louco-Arco_26: 86589093079502412
+      Louco-Arco_27: -3921083456243402402
+      Louco-Arco_28: -4702153070478026656
+      Louco-Arco_29: -697947077111427640
+      Louco-Arco_3: 8784294844913808189
+      Louco-Arco_30: 3493784425205615039
+      Louco-Arco_31: 5384645665988444439
+      Louco-Arco_32: -2444399879269927968
+      Louco-Arco_33: -1087823591871858725
+      Louco-Arco_34: 9011283490640281855
+      Louco-Arco_35: 4811219084069987734
+      Louco-Arco_36: -8247711340796389539
+      Louco-Arco_37: -120308376946294649
+      Louco-Arco_38: 1770280889151326659
+      Louco-Arco_39: -6856885860761335381
+      Louco-Arco_4: -5663869168884027446
+      Louco-Arco_40: 1398692260982561604
+      Louco-Arco_41: 8297725396623281267
+      Louco-Arco_42: 3472431512874999346
+      Louco-Arco_5: 570011399165054101
+      Louco-Arco_6: -3711863181526077190
+      Louco-Arco_7: -306235127531747821
+      Louco-Arco_8: 8416780951496792288
+      Louco-Arco_9: -3980933144993502833
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

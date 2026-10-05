@@ -1,47 +1,34 @@
-# Projeto de jogo 2D
+# Onion-Atomicamente-Instável
 
-Protótipo de ação e RPG totalmente em 2D, com visão top-down, exploração em mundo aberto, combate e progressão de personagem. O projeto é desenvolvido com Unity 2D e C#.
+**Onion** é um protótipo de jogo 2D de ação com visão superior, desenvolvido em Unity. Este repositório contém o projeto atual em andamento.
 
-## Conceito de jogo
+## O que existe nesta versão
 
-Objetos podem conceder poderes ao jogador de duas formas:
+- Uma cena de jogo habilitada para execução: `Assets/Scenes/SampleScene.unity`.
+- Movimento do personagem com **WASD** e dash com **Espaço**.
+- Ataque de espada com o **botão esquerdo do mouse**, mirando na direção do cursor.
+- Inimigos com movimento de patrulha simples, vida, recuo ao receber dano, efeito visual de acerto e efeito de morte.
+- Cenário 2D com tilemaps, iluminação 2D, animações, prefabs de inimigos e efeitos.
 
-- **Contato:** o objeto fica equipado e concede seus efeitos e habilidades enquanto estiver ativo. O jogador pode desequipá-lo para trocar de poder.
-- **Absorção:** o jogador consome ou absorve o objeto e mantém o poder até realizar uma ação específica para removê-lo.
+## Tecnologias
 
-O jogador pode manter um poder de Contato e um poder de Absorção ao mesmo tempo. Cada poder pode oferecer até quatro habilidades ativas, associadas a espaços de habilidade.
+- **Unity 6.3**, versão do Editor `6000.6.3f1`
+- **C#**
+- Unity Input System e Universal Render Pipeline 2D
 
-## Sistemas e mecânicas
+## Abrir o projeto
 
-- **Exploração e missões:** mundo aberto, personagens interativos, objetivos principais e secundários, coleta de itens, moedas, compras e recompensas.
-- **Combate:** ataques leves e pesados, habilidades de poderes, armas de combate próximo e à distância, escudo e bloqueio.
-- **Armas e equipamentos:** arma primária, arma secundária, escudo, armaduras, objeto de Contato e mochila.
-- **Bloqueio:** um escudo equipado reduz o dano recebido em 50% e consome 10 pontos de estamina por golpe bloqueado. Sem escudo, uma espada equipada permite bloquear com redução de 15% e custo de 15 pontos. Sem escudo ou espada equipada, o jogador recebe o dano normalmente.
-- **Inventário:** 40 espaços, organizados em quatro linhas de dez; uma mochila pode acrescentar até 20 espaços.
-- **Recursos:** vida e estamina se recuperam passivamente. Itens consumíveis recuperam recursos de forma imediata. Correr não consome estamina.
-- **Progressão:** experiência, níveis de personagem, equipamentos e habilidades.
-- **Inimigos:** a demonstração de IA usa detecção e perseguição com alcance limitado, retorno à área de origem, patrulha local, recuo com pouca vida e estilos de combate corpo a corpo, à distância ou híbrido. Inimigos comuns recuperam a vida após 10 segundos sem receber dano; chefes ficam fora dessa recuperação automática.
-- **Chefes:** a demonstração tem barra de vida, sequência de ataques à distância e investida, queimadura e regeneração lenta; os valores são provisórios. A loja para compra de itens também está implementada como demonstração.
+1. Instale a versão `6000.6.3f1` do Unity Editor pelo Unity Hub.
+2. No Unity Hub, selecione **Add/Open project** e escolha a pasta deste repositório.
+3. Aguarde o Unity importar os assets e resolver os pacotes de `Packages/manifest.json`.
+4. Abra `Assets/Scenes/SampleScene.unity`.
 
-## Controles do protótipo
+## Controles configurados
 
-- **WASD/setas:** mover; **Ctrl:** correr; **Espaço:** dash.
-- **F:** interagir e recolher itens; **E:** abrir/fechar o inventário.
-- **B:** abrir o inventário diretamente quando a mochila estiver equipada.
-- **I:** abrir o menu de gameplay; **Esc:** fechar um menu aberto ou pausar o jogo.
-- **Clique esquerdo:** ataque leve; segurar o botão esquerdo carrega o ataque pesado.
-- **Clique direito:** usar a arma secundária; segurar o botão direito bloqueia com escudo ou espada equipada.
-- **Tab:** trocar as posições das armas primária e secundária.
-- **Z/X/C/V:** espaços para habilidades; atualmente, a colher usa Z, a luva usa Z/X e a maçã usa C. V fica vazio até outro poder receber uma habilidade.
-- **M/N/H/K:** abrir diretamente as abas de mapa, missões, melhorias e árvore de habilidades no menu de gameplay.
+| Entrada | Ação |
+| --- | --- |
+| W, A, S, D | Mover o personagem |
+| Espaço | Dash |
+| Botão esquerdo do mouse | Atacar com a espada |
 
-## Protótipo
-
-O protótipo já reúne exemplos jogáveis de movimento, combate, poderes de Contato e Absorção, coleta e uso de itens, inventário, equipamentos, diálogos, missões e progressão. Algumas telas do menu de gameplay são demonstrações visuais e não representam sistemas completos.
-
-As regras descritas neste README resumem o conceito do jogo. Nem todas as mecânicas planejadas estão implementadas no protótipo atual.
-
-## Tecnologia
-
-- Unity 2D
-- C#
+O pacote de assets `Ninja Adventure - Asset Pack` inclui seu README e sua licença junto aos arquivos.

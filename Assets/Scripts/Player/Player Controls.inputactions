@@ -1,0 +1,130 @@
+{
+    "version": 1,
+    "name": "Player Controls",
+    "maps": [
+        {
+            "name": "Movement",
+            "id": "f0061170-40e6-4f72-90fc-e04889112ba2",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "PassThrough",
+                    "id": "7ffa6137-57c3-493e-8d74-6e858abea3e1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "6bb2243a-0bd3-4f14-bc87-863e975f7ed1",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "657c1083-3f40-417d-bdf1-f6ccfa43d1f8",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "9fc3878b-ff69-4ed0-a799-635e6beee0a4",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "50f29f2b-4823-4552-a970-0f2eadf88772",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "92b8d62f-cf6f-415c-8e89-6187ba82f0c2",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Combat",
+            "id": "97d58232-85ee-408c-bf43-83dbc5c6aa85",
+            "actions": [
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "c6d9360d-d10b-440a-a2b1-fecd1ffdda32",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "51c32758-7851-48d7-88ec-730a31648cd7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7255f77b-ed20-41e1-91f1-fc4b94bc9a17",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6247502c-cc55-4dd4-8866-29b37782577a",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

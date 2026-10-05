@@ -1,0 +1,1250 @@
+fileFormatVersion: 2
+guid: 92909f476c9052f4bb4d678cea61c020
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6542023220856825160
+    second: Madrasta_0
+  - first:
+      213: -991987008077255844
+    second: Madrasta_1
+  - first:
+      213: -4407139926419851068
+    second: Madrasta_2
+  - first:
+      213: 5252895863143939720
+    second: Madrasta_3
+  - first:
+      213: 4106121972661159237
+    second: Madrasta_4
+  - first:
+      213: 1947606380267535625
+    second: Madrasta_5
+  - first:
+      213: 1847022250765126080
+    second: Madrasta_6
+  - first:
+      213: 7738617011746110019
+    second: Madrasta_7
+  - first:
+      213: -1393827270013692507
+    second: Madrasta_8
+  - first:
+      213: 1635989024114160098
+    second: Madrasta_9
+  - first:
+      213: 567426540939132948
+    second: Madrasta_10
+  - first:
+      213: -4964900918674438969
+    second: Madrasta_11
+  - first:
+      213: 8554965802985500488
+    second: Madrasta_12
+  - first:
+      213: -7983854897977692727
+    second: Madrasta_13
+  - first:
+      213: 3148316809668347669
+    second: Madrasta_14
+  - first:
+      213: -8358640348924200309
+    second: Madrasta_15
+  - first:
+      213: -7170388645517664113
+    second: Madrasta_16
+  - first:
+      213: 3947163336222095246
+    second: Madrasta_17
+  - first:
+      213: 5619626586161416143
+    second: Madrasta_18
+  - first:
+      213: 70488505644104675
+    second: Madrasta_19
+  - first:
+      213: -2076364650334442908
+    second: Madrasta_20
+  - first:
+      213: -1925765309508284168
+    second: Madrasta_21
+  - first:
+      213: -5100839873907796750
+    second: Madrasta_22
+  - first:
+      213: 4618921258285571103
+    second: Madrasta_23
+  - first:
+      213: 8034383435359865661
+    second: Madrasta_24
+  - first:
+      213: 1623898721001670463
+    second: Madrasta_25
+  - first:
+      213: 8249498117953496109
+    second: Madrasta_26
+  - first:
+      213: -927915493684096103
+    second: Madrasta_27
+  - first:
+      213: -5820804643573110513
+    second: Madrasta_28
+  - first:
+      213: -6888176740427171826
+    second: Madrasta_29
+  - first:
+      213: 9101639058952732604
+    second: Madrasta_30
+  - first:
+      213: -8450301644807224710
+    second: Madrasta_31
+  - first:
+      213: -9141893532351337738
+    second: Madrasta_32
+  - first:
+      213: 1720945277436761962
+    second: Madrasta_33
+  - first:
+      213: -1853877663239006822
+    second: Madrasta_34
+  - first:
+      213: -2555245524680216032
+    second: Madrasta_35
+  - first:
+      213: -2170996975792027003
+    second: Madrasta_36
+  - first:
+      213: -8855786861310063076
+    second: Madrasta_37
+  - first:
+      213: 8497902998949881510
+    second: Madrasta_38
+  - first:
+      213: -3431170485629931109
+    second: Madrasta_39
+  - first:
+      213: 5611740704538533359
+    second: Madrasta_40
+  - first:
+      213: 7164068835487634929
+    second: Madrasta_41
+  - first:
+      213: 271466453847984320
+    second: Madrasta_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Madrasta_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 845278f457fe9ca50800000000000000
+      internalID: 6542023220856825160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 14
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5ba0c96211cb32f0800000000000000
+      internalID: -991987008077255844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_2
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 175
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c8bd424691b6d2c0800000000000000
+      internalID: -4407139926419851068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_3
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 14
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88e30dcd4f806e840800000000000000
+      internalID: 5252895863143939720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_4
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 0
+        width: 14
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54505e0dd20ebf830800000000000000
+      internalID: 4106121972661159237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90d712a1fa9470b10800000000000000
+      internalID: 1947606380267535625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_6
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 0
+        width: 14
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c9091d73f0f1a910800000000000000
+      internalID: 1847022250765126080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_7
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 175
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34afbe5db27156b60800000000000000
+      internalID: 7738617011746110019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_8
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 0
+        width: 14
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a5d4949b7128ace0800000000000000
+      internalID: -1393827270013692507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_9
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 175
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e133ce795334b610800000000000000
+      internalID: 1635989024114160098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_10
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 143
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4104ec0ce67efd700800000000000000
+      internalID: 567426540939132948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_11
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 159
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c4466d6be0291bb0800000000000000
+      internalID: -4964900918674438969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_12
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 143
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84fa098521859b670800000000000000
+      internalID: 8554965802985500488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_13
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 159
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cde6c34546a33190800000000000000
+      internalID: -7983854897977692727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_14
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 143
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5174ca8357111bb20800000000000000
+      internalID: 3148316809668347669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_15
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 159
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8a302d73e4200c80800000000000000
+      internalID: -8358640348924200309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_16
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 127
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f80ec6a6489ad7c90800000000000000
+      internalID: -7170388645517664113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_17
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 111
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e87b6fd242427c630800000000000000
+      internalID: 3947163336222095246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_18
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 127
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc70e762b9cecfd40800000000000000
+      internalID: 5619626586161416143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_19
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 111
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3eb3aa32cec6af000800000000000000
+      internalID: 70488505644104675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_20
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 127
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46a23a00a554f23e0800000000000000
+      internalID: -2076364650334442908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_21
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 111
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f01df577ae4645e0800000000000000
+      internalID: -1925765309508284168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_22
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 79
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f4d39bf82d2639b0800000000000000
+      internalID: -5100839873907796750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_23
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 95
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1c9c9d8964b91040800000000000000
+      internalID: 4618921258285571103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_24
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 79
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3b48ed9a2ddf7f60800000000000000
+      internalID: 8034383435359865661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_25
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 95
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f370480784f398610800000000000000
+      internalID: 1623898721001670463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_26
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 79
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d242fdf94da1c7270800000000000000
+      internalID: 8249498117953496109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_27
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 95
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 993d06956c16f13f0800000000000000
+      internalID: -927915493684096103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_28
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 63
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0961e04409583fa0800000000000000
+      internalID: -5820804643573110513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_29
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 47
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e08fabcefb74860a0800000000000000
+      internalID: -6888176740427171826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_30
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 63
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbfb2b660848f4e70800000000000000
+      internalID: 9101639058952732604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_31
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 47
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a72cd58fc6f7aba80800000000000000
+      internalID: -8450301644807224710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_32
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 63
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fae1c5a448712180800000000000000
+      internalID: -9141893532351337738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_33
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 47
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a671183ac9602e710800000000000000
+      internalID: 1720945277436761962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_34
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 15
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a959b996614b546e0800000000000000
+      internalID: -1853877663239006822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_35
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 31
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 022778bcbb1f98cd0800000000000000
+      internalID: -2555245524680216032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_36
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 15
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58a0871c0c11fd1e0800000000000000
+      internalID: -2170996975792027003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_37
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 31
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1eca0505cce91580800000000000000
+      internalID: -8855786861310063076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_38
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 15
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a66224f0cd9ee570800000000000000
+      internalID: 8497902998949881510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_39
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 31
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9139385f980260d0800000000000000
+      internalID: -3431170485629931109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_40
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 0
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fed9e914078e0ed40800000000000000
+      internalID: 5611740704538533359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_41
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 0
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f5dfa526a2eb6360800000000000000
+      internalID: 7164068835487634929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madrasta_42
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 0
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c84b0e2d4174c300800000000000000
+      internalID: 271466453847984320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Madrasta_0: 6542023220856825160
+      Madrasta_1: -991987008077255844
+      Madrasta_10: 567426540939132948
+      Madrasta_11: -4964900918674438969
+      Madrasta_12: 8554965802985500488
+      Madrasta_13: -7983854897977692727
+      Madrasta_14: 3148316809668347669
+      Madrasta_15: -8358640348924200309
+      Madrasta_16: -7170388645517664113
+      Madrasta_17: 3947163336222095246
+      Madrasta_18: 5619626586161416143
+      Madrasta_19: 70488505644104675
+      Madrasta_2: -4407139926419851068
+      Madrasta_20: -2076364650334442908
+      Madrasta_21: -1925765309508284168
+      Madrasta_22: -5100839873907796750
+      Madrasta_23: 4618921258285571103
+      Madrasta_24: 8034383435359865661
+      Madrasta_25: 1623898721001670463
+      Madrasta_26: 8249498117953496109
+      Madrasta_27: -927915493684096103
+      Madrasta_28: -5820804643573110513
+      Madrasta_29: -6888176740427171826
+      Madrasta_3: 5252895863143939720
+      Madrasta_30: 9101639058952732604
+      Madrasta_31: -8450301644807224710
+      Madrasta_32: -9141893532351337738
+      Madrasta_33: 1720945277436761962
+      Madrasta_34: -1853877663239006822
+      Madrasta_35: -2555245524680216032
+      Madrasta_36: -2170996975792027003
+      Madrasta_37: -8855786861310063076
+      Madrasta_38: 8497902998949881510
+      Madrasta_39: -3431170485629931109
+      Madrasta_4: 4106121972661159237
+      Madrasta_40: 5611740704538533359
+      Madrasta_41: 7164068835487634929
+      Madrasta_42: 271466453847984320
+      Madrasta_5: 1947606380267535625
+      Madrasta_6: 1847022250765126080
+      Madrasta_7: 7738617011746110019
+      Madrasta_8: -1393827270013692507
+      Madrasta_9: 1635989024114160098
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
