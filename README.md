@@ -101,10 +101,16 @@ O repositório contém o prólogo e seus sistemas de sobrevivência, combate, in
 | `Assets/Prefabs/` | Modelos reutilizáveis de itens, armas, inimigos e interfaces |
 | `Assets/Sprites/` | Arte, tilemaps, personagens, cenários e elementos de interface |
 | `Assets/Logos/` | Marca da abertura e ícone do jogo |
+| `Documents/` | GDD e documento técnico publicados em PDF |
 | `Packages/` e `ProjectSettings/` | Dependências e configurações do Unity |
 
 O projeto usa **C#**, **Unity Input System**, **Universal Render Pipeline 2D** e **TextMesh Pro**. Os saves são arquivos JSON no diretório que a Unity fornece por `Application.persistentDataPath`.
 
+## Documentação
+
+- [GDD — Game Design Document](Documents/v1.0%20-%20GDD%20-%20Game%20Design%20Document%20-%2008.10.2026.pdf)
+- [TD — Technical Document](Documents/v1.0%20-%20TD%20-%20Technical%20Document%20-%2008.10.2026.pdf)
+
 ## Autoria e recursos
 
-Projeto desenvolvido por **Igor Filipi**. O repositório contém recursos de terceiros; a autoria e as condições de uso desses recursos devem ser consultadas nos respectivos pacotes e arquivos de licença. A documentação de design para estudo é mantida localmente e não faz parte deste repositório.
+Projeto desenvolvido por **Igor Filipi**. O repositório contém recursos de terceiros; a autoria e as condições de uso desses recursos devem ser consultadas nos respectivos pacotes e arquivos de licença. Os rascunhos de trabalho da documentação permanecem locais; as versões em PDF estão na pasta `Documents/`.

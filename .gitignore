@@ -25,9 +25,11 @@
 *.tmp
 sysinfo.txt
 
-# Game design documents are kept local and must not be committed
+# Rascunhos locais ficam fora do Git; PDFs publicados em Documents/ entram.
 GDD/
 **/*GDD*
+!Documents/
+!Documents/**
 
 # IDE and editor local state
 .vs/
