@@ -124,6 +124,56 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Equipment",
+            "id": "520b83ae-3664-4c43-a9da-acf3fb4ae9ce",
+            "actions": [
+                {
+                    "name": "SwitchPower",
+                    "type": "Button",
+                    "id": "dd8aeb23-0e60-44f8-9b86-1403517c6c67",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "ToggleBackpack",
+                    "type": "Button",
+                    "id": "35257415-a7ce-4719-8705-502c0145d67e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9b1ec176-15a3-4c27-a813-c346a4f25b9a",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchPower",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c9a77e8-37f4-4b23-bb09-7f2e07a02099",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleBackpack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

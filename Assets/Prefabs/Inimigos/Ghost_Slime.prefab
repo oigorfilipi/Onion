@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7064617178154679457}
   - component: {fileID: 3136246197576289063}
   - component: {fileID: 5623120699316594701}
+  - component: {fileID: 6673548191119417429}
   m_Layer: 0
   m_Name: Ghost_Slime
   m_TagString: Untagged
@@ -176,6 +177,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc281a6191d65e478c8ff33e697f494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  roamChangeDirFloat: 2
+  detectionRange: 8
+  loseTargetRange: 11
+  attackRange: 1.4
+  attackCooldown: 1.2
+  attackDamage: 8
+  attackTrigger: Attack
 --- !u!114 &2738857505648106781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,8 +231,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92956c11a1e6f46459168a974bc630d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  startingHealth: 3
+  startingHealth: 25
   deathVFXPrefab: {fileID: 5178821613737937683, guid: 9e333af54c78d35449796974a7bb1392, type: 3}
+  knockBackThrust: 15
+  experienceReward: 15
 --- !u!114 &3136246197576289063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,3 +262,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Flash
   whiteFlashMat: {fileID: 2100000, guid: 7e51e29ae6f8c224a9af3d02f15e9ff7, type: 2}
   restoreDefaultMatTime: 0.2
+--- !u!114 &6673548191119417429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111934074176043196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1076d6a9718492499d65c03df9c11a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthBar
+  offsetAboveSprite: {x: 0, y: 0.18}
+  barWidth: 0.8
+  barHeight: 0.12
+  backgroundColor: {r: 0.12, g: 0.12, b: 0.12, a: 1}
+  fillColor: {r: 0.85, g: 0.15, b: 0.15, a: 1}
+  backgroundSprite: {fileID: 4651075968567485063, guid: 0df216a93d6bf21449b214f62522a9d1, type: 3}
+  fillSprite: {fileID: -4824743347762680713, guid: 0df216a93d6bf21449b214f62522a9d1, type: 3}

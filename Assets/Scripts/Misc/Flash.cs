@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Troca temporariamente o material do sprite para mostrar que um personagem recebeu dano.
+/// </summary>
 public class Flash : MonoBehaviour
 {
     [SerializeField] private Material whiteFlashMat;

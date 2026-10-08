@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Lê o movimento e o dash do Input System, move o Rigidbody2D e orienta o sprite para o mouse.
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     public bool FacingLeft { get { return facingLeft; } }
@@ -39,6 +42,16 @@ public class PlayerController : MonoBehaviour
         playerControls.Enable();
     }
 
+    private void OnDisable() {
+        movement = Vector2.zero;
+        playerControls?.Disable();
+        if (myAnimator != null)
+        {
+            myAnimator.SetFloat("moveX", 0f);
+            myAnimator.SetFloat("moveY", 0f);
+        }
+    }
+
     private void Update() {
         PlayerInput();
     }
@@ -72,8 +85,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Acelera por 0,2 s e liga o rastro; a coroutine devolve a velocidade normal e controla a recarga.
     private void Dash() {
-        if (!isDashing) {
+        if (Time.timeScale > 0f && !isDashing) {
             isDashing = true;
             moveSpeed *= dashSpeed;
             myTrailRenderer.emitting = true;

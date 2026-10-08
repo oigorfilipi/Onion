@@ -210,6 +210,56 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Equipment"",
+            ""id"": ""520b83ae-3664-4c43-a9da-acf3fb4ae9ce"",
+            ""actions"": [
+                {
+                    ""name"": ""SwitchPower"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd8aeb23-0e60-44f8-9b86-1403517c6c67"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""ToggleBackpack"",
+                    ""type"": ""Button"",
+                    ""id"": ""35257415-a7ce-4719-8705-502c0145d67e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9b1ec176-15a3-4c27-a813-c346a4f25b9a"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchPower"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c9a77e8-37f4-4b23-bb09-7f2e07a02099"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleBackpack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -221,12 +271,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
         m_Combat_Attack = m_Combat.FindAction("Attack", throwIfNotFound: true);
         m_Combat_Dash = m_Combat.FindAction("Dash", throwIfNotFound: true);
+        // Equipment
+        m_Equipment = asset.FindActionMap("Equipment", throwIfNotFound: true);
+        m_Equipment_SwitchPower = m_Equipment.FindAction("SwitchPower", throwIfNotFound: true);
+        m_Equipment_ToggleBackpack = m_Equipment.FindAction("ToggleBackpack", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_Movement.enabled, "This will cause a leak and performance issues, PlayerControls.Movement.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Combat.enabled, "This will cause a leak and performance issues, PlayerControls.Combat.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Equipment.enabled, "This will cause a leak and performance issues, PlayerControls.Equipment.Disable() has not been called.");
     }
 
     /// <summary>
@@ -501,6 +556,113 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="CombatActions" /> instance referencing this action map.
     /// </summary>
     public CombatActions @Combat => new CombatActions(this);
+
+    // Equipment
+    private readonly InputActionMap m_Equipment;
+    private List<IEquipmentActions> m_EquipmentActionsCallbackInterfaces = new List<IEquipmentActions>();
+    private readonly InputAction m_Equipment_SwitchPower;
+    private readonly InputAction m_Equipment_ToggleBackpack;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Equipment".
+    /// </summary>
+    public struct EquipmentActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public EquipmentActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Equipment/SwitchPower".
+        /// </summary>
+        public InputAction @SwitchPower => m_Wrapper.m_Equipment_SwitchPower;
+        /// <summary>
+        /// Provides access to the underlying input action "Equipment/ToggleBackpack".
+        /// </summary>
+        public InputAction @ToggleBackpack => m_Wrapper.m_Equipment_ToggleBackpack;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Equipment; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="EquipmentActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(EquipmentActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="EquipmentActions" />
+        public void AddCallbacks(IEquipmentActions instance)
+        {
+            if (instance == null || m_Wrapper.m_EquipmentActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_EquipmentActionsCallbackInterfaces.Add(instance);
+            @SwitchPower.started += instance.OnSwitchPower;
+            @SwitchPower.performed += instance.OnSwitchPower;
+            @SwitchPower.canceled += instance.OnSwitchPower;
+            @ToggleBackpack.started += instance.OnToggleBackpack;
+            @ToggleBackpack.performed += instance.OnToggleBackpack;
+            @ToggleBackpack.canceled += instance.OnToggleBackpack;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="EquipmentActions" />
+        private void UnregisterCallbacks(IEquipmentActions instance)
+        {
+            @SwitchPower.started -= instance.OnSwitchPower;
+            @SwitchPower.performed -= instance.OnSwitchPower;
+            @SwitchPower.canceled -= instance.OnSwitchPower;
+            @ToggleBackpack.started -= instance.OnToggleBackpack;
+            @ToggleBackpack.performed -= instance.OnToggleBackpack;
+            @ToggleBackpack.canceled -= instance.OnToggleBackpack;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="EquipmentActions.UnregisterCallbacks(IEquipmentActions)" />.
+        /// </summary>
+        /// <seealso cref="EquipmentActions.UnregisterCallbacks(IEquipmentActions)" />
+        public void RemoveCallbacks(IEquipmentActions instance)
+        {
+            if (m_Wrapper.m_EquipmentActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="EquipmentActions.AddCallbacks(IEquipmentActions)" />
+        /// <seealso cref="EquipmentActions.RemoveCallbacks(IEquipmentActions)" />
+        /// <seealso cref="EquipmentActions.UnregisterCallbacks(IEquipmentActions)" />
+        public void SetCallbacks(IEquipmentActions instance)
+        {
+            foreach (var item in m_Wrapper.m_EquipmentActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_EquipmentActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="EquipmentActions" /> instance referencing this action map.
+    /// </summary>
+    public EquipmentActions @Equipment => new EquipmentActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Movement" which allows adding and removing callbacks.
     /// </summary>
@@ -537,5 +699,27 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDash(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Equipment" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="EquipmentActions.AddCallbacks(IEquipmentActions)" />
+    /// <seealso cref="EquipmentActions.RemoveCallbacks(IEquipmentActions)" />
+    public interface IEquipmentActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "SwitchPower" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchPower(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ToggleBackpack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnToggleBackpack(InputAction.CallbackContext context);
     }
 }

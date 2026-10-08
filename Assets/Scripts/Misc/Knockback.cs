@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Aplica um impulso de recuo e suspende o movimento normal do inimigo enquanto ele dura.
+/// </summary>
 public class Knockback : MonoBehaviour
 {
     public bool GettingKnockedBack { get; private set; }
