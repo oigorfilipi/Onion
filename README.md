@@ -113,4 +113,4 @@ O projeto usa **C#**, **Unity Input System**, **Universal Render Pipeline 2D** e
 
 ## Autoria e recursos
 
-Projeto desenvolvido por **Igor Filipi**. O repositório contém recursos de terceiros; a autoria e as condições de uso desses recursos devem ser consultadas nos respectivos pacotes e arquivos de licença. Os rascunhos de trabalho da documentação permanecem locais; as versões em PDF estão na pasta `Documents/`.
+Projeto desenvolvido por **Igor Filipi**, **Heloisa Silva**, **Isaac Silva** e **Amanda Lima**. O repositório contém recursos de terceiros; a autoria e as condições de uso desses recursos devem ser consultadas nos respectivos pacotes e arquivos de licença. Os rascunhos de trabalho da documentação permanecem locais; as versões em PDF estão na pasta `Documents/`.
