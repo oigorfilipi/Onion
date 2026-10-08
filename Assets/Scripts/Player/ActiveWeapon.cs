@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class ActiveWeapon : MonoBehaviour
 {
     [SerializeField] private Vector2 bowDisplayOffset = new Vector2(0f, 1f);
+    [SerializeField, Min(0f)] private float bowFacingSideOffset = 0.2f;
     [SerializeField] private float bowFloatAmplitude = 0.06f;
     [SerializeField] private float bowFloatFrequency = 3f;
     [SerializeField, Min(0f)] private float bowVisibleAfterShot = 0.25f;
@@ -18,7 +19,8 @@ public class ActiveWeapon : MonoBehaviour
     [SerializeField] private Vector2 arrowSpawnOffset = new Vector2(0f, 0.45f);
     [SerializeField, Min(0.01f)] private float arrowWorldScale = 1f;
     [SerializeField, Min(0.01f)] private float arrowColliderRadius = 0.12f;
-    [SerializeField, Min(0)] private int arrowDamage = 4;
+    [SerializeField, Min(0)] private int arrowDamage = 7;
+    [SerializeField, Range(0f, 1f)] private float diamondCriticalChance = 0.1f;
 
     private PlayerControls playerControls;
     private InputAction secondaryAttackAction;
@@ -232,7 +234,11 @@ public class ActiveWeapon : MonoBehaviour
 
         showingBow = false;
         UpdateWeaponVisibility();
-        equippedSword.PerformAttack(GetSwordDamage());
+        int attackDamage = GetSwordDamage();
+        bool diamondSword = equippedPrimaryItem.Name.ToLowerInvariant().Contains("diamante");
+        if (diamondSword && Random.value < diamondCriticalChance) attackDamage = 15;
+        equippedSword.PerformAttack(attackDamage);
+        GameSession.RecordWeaponAttack(false, equippedPrimaryItem.Name.ToLowerInvariant().Contains("ferro"));
     }
 
     private void OnSecondaryAttack(InputAction.CallbackContext context)
@@ -396,7 +402,10 @@ public class ActiveWeapon : MonoBehaviour
             projectile = arrow.AddComponent<ArrowProjectile>();
         }
 
-        projectile.Launch(aimDirection, arrowSpeed, arrowDamage, arrowLifetime, playerVitals);
+        int bowDamage = arrowDamage + (playerVitals != null ? playerVitals.SwordDamageBonus : 0);
+        projectile.Launch(aimDirection, arrowSpeed, bowDamage, arrowLifetime, playerVitals);
+        GameAudio.PlayArrow();
+        GameSession.RecordWeaponAttack(true);
         return true;
     }
 
@@ -514,8 +523,9 @@ public class ActiveWeapon : MonoBehaviour
         }
 
         float bob = Mathf.Sin(Time.time * bowFloatFrequency) * bowFloatAmplitude;
+        float side = playerController.FacingLeft ? -bowFacingSideOffset : bowFacingSideOffset;
         bowDisplayRenderer.transform.localPosition = new Vector3(
-            bowDisplayOffset.x,
+            bowDisplayOffset.x + side,
             bowDisplayOffset.y + bob,
             0f);
 

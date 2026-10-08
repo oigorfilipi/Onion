@@ -78,4 +78,11 @@ public class ItemDictionary : MonoBehaviour
 
         return prefab;
     }
+
+    public bool TryGetItemPrefab(string itemName, out GameObject prefab)
+    {
+        prefab = null;
+        return !string.IsNullOrWhiteSpace(itemName) && itemPrefabsByName != null &&
+               itemPrefabsByName.TryGetValue(itemName, out prefab) && prefab != null;
+    }
 }

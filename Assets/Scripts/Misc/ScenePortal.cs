@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,9 @@ public class ScenePortal : MonoBehaviour
 {
     [SerializeField] private string destinationScene;
     [SerializeField] private string destinationSpawnId;
+    [SerializeField, Min(1f)] private float combatIntroSeconds = 4f;
+    [SerializeField, TextArea(2, 4)] private string combatIntroText =
+        "A porta se abre...\nLá fora, os slimes avançam. Sobreviva!";
     private static float nextTransitionTime;
 
     // Salva a posição e indica a âncora de chegada antes de carregar a outra cena.
@@ -21,9 +25,26 @@ public class ScenePortal : MonoBehaviour
         PlayerVitals vitals = player.GetComponent<PlayerVitals>();
         if (vitals != null && vitals.IsDead) return;
 
-        nextTransitionTime = Time.unscaledTime + 0.75f;
+        bool enteringCombat = SceneManager.GetActiveScene().name == "CasaInterior" &&
+                              destinationScene == "SampleScene";
+        nextTransitionTime = Time.unscaledTime + (enteringCombat ? combatIntroSeconds + 0.75f : 0.75f);
         FindAnyObjectByType<SaveController>()?.SaveGame();
         GameSession.ChooseSceneTransition(destinationSpawnId);
+        if (enteringCombat) StartCoroutine(PlayCombatIntro(player));
+        else SceneManager.LoadScene(destinationScene);
+    }
+
+    private IEnumerator PlayCombatIntro(PlayerController player)
+    {
+        player.enabled = false;
+        ActiveWeapon weapon = player.GetComponentInChildren<ActiveWeapon>(true);
+        if (weapon != null) weapon.enabled = false;
+        OnionMenuController pauseMenu = FindAnyObjectByType<OnionMenuController>();
+        if (pauseMenu != null && pauseMenu.IsPauseMenu) pauseMenu.enabled = false;
+        GameAudio.PlayStoryIntro();
+        RuntimeGameUI.ShowStory(combatIntroText, combatIntroSeconds);
+        yield return new WaitForSecondsRealtime(combatIntroSeconds);
+        RuntimeGameUI.HideStory();
         SceneManager.LoadScene(destinationScene);
     }
 }

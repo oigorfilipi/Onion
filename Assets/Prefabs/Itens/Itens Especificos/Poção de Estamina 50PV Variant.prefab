@@ -17,7 +17,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 165047704489055678, guid: 7aa19f1ee3bc58943b90b9614d4514a1, type: 3}
-      propertyPath: staminaBonus
+      propertyPath: staminaRestore
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 165047704489055678, guid: 7aa19f1ee3bc58943b90b9614d4514a1, type: 3}

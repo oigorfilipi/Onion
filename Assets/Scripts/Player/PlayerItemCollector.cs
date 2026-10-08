@@ -23,18 +23,28 @@ public class PlayerItemCollector : MonoBehaviour
         if (collision.CompareTag("Item"))
         {
             Item item = collision.GetComponent<Item>();
-            if (item == null || inventoryController == null)
-            {
-                return;
-            }
+            if (item == null) return;
 
             ItemStack worldStack = item.GetComponent<ItemStack>();
             int quantity = worldStack != null ? worldStack.Quantity : 1;
+            if (item.Name.ToLowerInvariant().Contains("moeda") || item.Name.ToLowerInvariant().Contains("coin"))
+            {
+                GameSession.AddCoins(quantity);
+                GameAudio.PlayCoin(item.IsRuntimeSpawn);
+                playerVitals?.GainExperience(5);
+                FindAnyObjectByType<SaveController>()?.RegisterCollectedWorldItem(item);
+                Destroy(item.gameObject);
+                return;
+            }
+
+            if (inventoryController == null) return;
+
             int added = inventoryController.AddItemQuantity(item, quantity);
 
             if (added > 0)
             {
                 item.PickUp();
+                GameAudio.PlayPickup(item.IsRuntimeSpawn);
                 if (added == quantity)
                 {
                     FindAnyObjectByType<SaveController>()?.RegisterCollectedWorldItem(item);

@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 165047704489055678, guid: 7aa19f1ee3bc58943b90b9614d4514a1, type: 3}
       propertyPath: weaponDamage
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 165047704489055678, guid: 7aa19f1ee3bc58943b90b9614d4514a1, type: 3}
       propertyPath: weaponPrefab

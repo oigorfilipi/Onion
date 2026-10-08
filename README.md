@@ -1,116 +1,86 @@
 <p align="center">
-  <img src="Assets/Logos/Logo%20do%20Jogo.png" alt="Logo do jogo Onion" width="220">
+  <img src="Assets/Logos/Logo%20do%20Jogo.png" alt="Logo do jogo Onion" width="240">
 </p>
 
 # Onion — Atomicamente Instável
 
-**Onion** é um jogo 2D de ação e sobrevivência com visão superior, feito em Unity. Este repositório reúne o **prólogo jogável**: o personagem começa dentro de casa, prepara seu equipamento e sai para um mapa onde precisa resistir a slimes, coletar suprimentos e sobreviver ao tempo do modo escolhido.
+**Onion** é um prólogo jogável de ação e sobrevivência 2D, com visão superior, criado em Unity. O personagem começa dentro de casa, recebe equipamentos dos NPCs e entra em um mapa tomado por slimes. O objetivo é sobreviver ao tempo da dificuldade escolhida, explorando o mapa, lutando, coletando recursos e evoluindo o personagem.
 
-O mundo, os personagens e a ideia de instabilidade atômica ainda estão sendo desenvolvidos. A proposta de história e as missões futuras não são apresentadas aqui como conteúdo já concluído.
+## Começar uma partida
 
-## Como funciona uma partida
+1. No menu, escolha **Novo Jogo**, a dificuldade, o nome do personagem e uma das **cinco vagas**.
+2. Converse com a Madrasta na casa para receber a Espada de Ferro. O relógio ainda não avança dentro da casa.
+3. Atravesse a porta para chegar ao mapa externo. Ali começam o tempo de sobrevivência, os inimigos e os itens que aparecem aleatoriamente.
+4. Fale com o Velho para obter a Espada de Diamante, com o Louco do Arco para obter arco e flechas, e com a Mercadora para receber a armadura. Essas recompensas são dadas uma vez por tentativa; o Louco do Arco pode repor flechas até 99 depois de um minuto.
+5. Nos modos Fácil, Médio e Difícil, sobreviva até o relógio terminar. No Insano, o tempo é ilimitado e o objetivo é durar o máximo possível.
 
-1. No menu inicial, escolha **Novo Jogo**, uma dificuldade, o nome do personagem e uma das **cinco vagas de save**. O nome da vaga também é o nome mostrado para o jogador.
-2. A partida começa na **casa interior**. É possível conversar com a Madrasta e receber uma Espada de Ferro na primeira conversa concluída.
-3. Ao sair de casa, começa o desafio no **mapa externo**. O relógio só avança nesse mapa; permanecer na casa não aproxima a vitória.
-4. Slimes surgem ao longo da partida. O jogador pode lutar com espada e arco, recolher alimentos e poções, organizar o inventário, equipar armadura e ganhar níveis.
-5. Nos modos com limite de tempo, sobreviver até o contador terminar mostra a tela de **Vitória**. Se a vida chegar a zero, aparece **Derrotado**. Renascer inicia a tentativa do começo, mantendo o nome e a dificuldade escolhidos.
+| Modo | Tempo no mapa | Vida e dano dos inimigos | Intervalo de itens consumíveis |
+| --- | ---: | ---: | ---: |
+| Fácil | 3 minutos | Base atual | 25 s |
+| Médio | 10 minutos | +5% sobre a base | 32,5 s |
+| Difícil | 15 minutos | +10% sobre a base | 40 s |
+| Insano | Sem limite | +15% sobre a base | 50 s |
 
-| Dificuldade | Objetivo | Relógio |
-| --- | --- | --- |
-| Fácil | Sobreviver por 3 minutos no mapa externo | Regressivo |
-| Médio | Sobreviver por 10 minutos no mapa externo | Regressivo |
-| Difícil | Sobreviver por 15 minutos no mapa externo | Regressivo |
-| Insano | Resistir até morrer, sem vitória automática | Progressivo |
+Os slimes comuns já têm uma base de vida e dano 15% maior que a dos seus prefabs; os chefes usam três vezes a base dos respectivos prefabs. Conforme o tempo passa, mais slimes aparecem e cresce a chance de nascer uma variante forte. A cada dez níveis, os inimigos também melhoram dano, velocidade e perseguição. Um chefe surge perto do jogador a cada cinco níveis.
 
 ## Controles
 
 | Entrada | Ação |
 | --- | --- |
-| **W, A, S, D** | Mover o personagem |
-| **Mouse** | Apontar o personagem e as armas |
-| **Espaço** | Dash; também avança uma fala quando um diálogo está aberto |
+| **W, A, S, D** | Mover |
+| **Mouse** | Mirar |
+| **Espaço** | Dash, gastando 10 de estamina; em diálogo, avançar a fala |
 | **Clique esquerdo** | Atacar com a espada equipada |
-| **Clique direito** | Atirar com o arco equipado, consumindo uma flecha |
+| **Clique direito** | Atirar com o arco equipado, gastando uma flecha |
 | **E** | Abrir ou fechar o inventário |
-| **B** | Alternar a janela da mochila, quando equipada e na aba Inventário |
-| **Clique direito em um item de cura no inventário** | Usar uma unidade do item |
-| **Tab** | Alternar a seleção entre os dois slots de poder, se ambos estiverem ocupados |
-| **F** | Conversar com um NPC próximo e avançar o diálogo |
-| **Esc** | Pausar ou retomar a partida; durante um diálogo, fechá-lo |
+| **B** | Abrir ou fechar a mochila equipada, na aba Inventário |
+| **F** | Conversar com um NPC próximo |
+| **Tab** | Alternar entre os dois slots de poder ocupados |
+| **1 a 0** | Selecionar um dos dez espaços da barra rápida |
+| **Duplo clique em item da barra rápida** | Usar um consumível |
+| **Clique direito em consumível no inventário** | Usar uma unidade do item |
+| **Esc** | Pausar ou retomar; também fecha diálogos |
 
-O ataque com espada exige uma arma primária equipada. O arco usa o botão direito durante a jogabilidade e precisa estar no slot de arma secundária com flechas disponíveis.
+A espada precisa estar no slot **Arma Primária**. Para disparar, equipe o arco em **Arma Secundária** e tenha flechas no inventário ou na barra rápida.
 
-## Sistemas presentes no prólogo
+## Sistemas do prólogo
 
-### Combate, inimigos e progressão
+- **Combate:** a Espada de Ferro causa 5 de dano base; a de Diamante, 10, com chance de crítico de 15. O arco causa 7 de dano base. O dano das armas cresce com o nível. Slimes de Fogo e Ghost perseguem, atacam e alguns disparam projéteis com fogo ou veneno.
+- **Progressão:** o personagem começa com 100 PV, 100 de estamina e 5 de defesa base. Cada nível acrescenta 25 ao máximo de vida e estamina, além de 1 à defesa base e ao dano das armas. Cada peça de armadura equipada ganha defesa adicional a cada cinco níveis.
+- **Recursos:** itens coletados concedem XP. Pães e poções recuperam vida; poções de estamina recuperam estamina. A Poção de Queimadura protege do fogo por 20 segundos e a Maçã Envenenada protege do veneno por 20 segundos. Açúcar aumenta a velocidade temporariamente.
+- **Inventário:** são 40 espaços principais, mais 10 ao equipar a mochila. Itens empilháveis chegam a 99 unidades por espaço; equipamentos ocupam um espaço por unidade. A barra rápida mantém dez espaços visíveis durante a partida.
+- **Conquistas e histórico:** o jogo registra moedas, abates, recordes e conquistas entre tentativas. O Histórico pode ser aberto no menu inicial e na pausa.
+- **Save:** existem cinco vagas. O progresso é salvo automaticamente quando muda e em intervalos durante a partida, além de ser gravado ao sair. Uma tentativa encerrada por morte ou vitória não pode ser continuada; a vaga pode ser usada para uma nova partida. O histórico global e as conquistas permanecem.
 
-- **Espadas:** a de Ferro causa 3 de dano base e a de Diamante, 5. Cada nível conquistado acrescenta 1 ao dano da espada.
-- **Arco:** causa 4 de dano base por flecha e consome uma unidade de munição por disparo.
-- **Slimes:** Fogo e Ghost patrulham, detectam o personagem, perseguem e atacam. Variantes geradas durante a partida podem ser mais fortes ou mais fracas.
-- **Vida e defesa:** o personagem começa com 100 de vida e 5 de defesa base. A defesa reduz o dano recebido, com mínimo de 1 por golpe. Capacete, peitoral e botas podem acrescentar defesa.
-- **Experiência:** matar slimes e coletar itens concede XP. A primeira subida exige 100 XP; a exigência cresce 50 a cada nível. XP excedente passa para o nível seguinte. Subir de nível também acrescenta 1 à defesa base.
-- **Interface:** barras de vida, estamina e XP acompanham o personagem durante a jogabilidade; inimigos mostram a própria barra de vida.
+Os slots de **Poder 1** e **Poder 2** já distinguem itens de contato e absorvíveis. As habilidades ativas desses poderes e as ações do cenário que removeriam um poder absorvido ainda são ideias para uma continuação. A Mercadora entrega armadura; uma loja com preços e compra e venda ainda não foi implementada.
 
-### Inventário, mochila e cura
+## Abrir no Unity e criar o EXE
 
-- O inventário principal tem **40 slots**. Uma mochila equipada oferece **mais 10 slots**.
-- Itens comuns empilháveis, como alimentos e flechas, podem chegar a **99 unidades por slot**; equipamentos ocupam um slot por unidade.
-- Pão francês recupera **20 PV**, pão de forma **35 PV**, poção de 50 PV recupera **50 PV** e poção de 100 PV recupera **100 PV**. A cura não é gasta se a vida já estiver completa.
-- Itens de cura aparecem periodicamente em posições válidas do mapa externo.
-- Há slots para arma primária, escudo, arma secundária, dois poderes, mochila, peitoral, capacete e botas.
+1. Abra este projeto no **Unity 6000.6.3f1**.
+2. Confira as cenas incluídas na build: `MainMenu`, `CasaInterior` e `SampleScene`, nessa ordem.
+3. Escolha a plataforma **Windows 64-bit** e gere o executável em uma pasta de saída.
+4. Para jogar ou entregar a build, mantenha **o EXE e toda a pasta de dados gerada ao lado dele**. Enviar só o EXE não inclui os recursos do jogo.
 
-### NPCs e recompensas
+Os elementos de interface podem ser ajustados diretamente na Hierarchy, dentro de **Gameplay UI 1** em cada cena. Na cena externa, o componente **SurvivalSpawner** expõe no Inspector as frequências de nascimento e os multiplicadores de dificuldade. Os valores de itens ficam nos respectivos prefabs.
 
-| NPC | Recompensa atual |
+## Organização
+
+| Pasta | Conteúdo |
 | --- | --- |
-| Madrasta | Espada de Ferro, uma vez por save |
-| Velho | Espada de Diamante, uma vez por save |
-| Louco do Arco | Arco na primeira conversa; flechas repostas até 99 após o intervalo de um minuto |
-| Mercadora | Interação de diálogo; loja ainda não implementada |
+| `Assets/Scenes/` | Menu inicial, interior da casa e mapa externo |
+| `Assets/Scripts/` | Regras de combate, inimigos, itens, UI, NPCs e salvamento |
+| `Assets/Prefabs/` | Modelos de itens, armas, inimigos e interface |
+| `Assets/Sprites/` e `Assets/Logos/` | Arte do jogo, marca e ícone |
+| `Documents/` | GDD, documento técnico e figuras publicados |
+| `Packages/` e `ProjectSettings/` | Pacotes e configuração do Unity |
 
-As falas definitivas dos NPCs ainda não foram escritas no projeto. A interface mostra um texto provisório quando uma lista de falas está vazia.
-
-### Save, pausa e apresentação
-
-O jogo oferece cinco vagas e **salvamento automático** quando o progresso muda, além de checkpoints periódicos no mapa externo. Continuar uma vaga restaura cena, posição, atributos, itens, equipamentos, dificuldade e tempo da tentativa. O menu de pausa interrompe a contagem do relógio. A tela inicial alterna imagens de fundo; as telas de pausa, vitória e derrota usam o jogo desfocado ao fundo.
-
-Na abertura de uma build, a marca e a tipografia do projeto aparecem com o splash da Unity. O ícone do aplicativo usa a imagem em `Assets/Logos/Logo do Jogo.png`.
-
-## Estado atual e próximos conteúdos
-
-O repositório contém o prólogo e seus sistemas de sobrevivência, combate, inventário e save. Algumas estruturas foram preparadas para expansão:
-
-- Os dois slots de **poder** distinguem itens de contato e itens absorvíveis. O bloqueio de retirada e a troca de seleção existem, mas as habilidades ativas e as ações do cenário para remover um poder absorvido ainda não estão implementadas.
-- A **Mercadora** conversa, mas ainda não há moeda, preços ou compra e venda.
-- Missões, história completa, diálogos finais, habilidades dos poderes e efeitos ativos do escudo são ideias para uma próxima etapa.
-
-## Abrir e gerar uma build
-
-1. Instale o **Unity Editor `6000.6.3f1`** pelo Unity Hub.
-2. Abra a pasta raiz deste repositório como projeto Unity e aguarde a importação dos assets e dos pacotes.
-3. Inicie pela cena `Assets/Scenes/MainMenu.unity`. As cenas do fluxo são `MainMenu`, `CasaInterior` e `SampleScene`, nessa ordem nas configurações de build.
-4. Para gerar um executável, selecione **Windows** nos perfis de build da Unity e crie uma nova build. O repositório contém o **projeto-fonte**, não um `.exe` pronto.
-
-## Organização do projeto
-
-| Pasta | Conteúdo principal |
-| --- | --- |
-| `Assets/Scenes/` | Menu inicial, casa e mapa externo |
-| `Assets/Scripts/` | Regras de player, combate, inimigos, itens, UI, NPCs e saves |
-| `Assets/Prefabs/` | Modelos reutilizáveis de itens, armas, inimigos e interfaces |
-| `Assets/Sprites/` | Arte, tilemaps, personagens, cenários e elementos de interface |
-| `Assets/Logos/` | Marca da abertura e ícone do jogo |
-| `Documents/` | GDD e documento técnico publicados em PDF |
-| `Packages/` e `ProjectSettings/` | Dependências e configurações do Unity |
-
-O projeto usa **C#**, **Unity Input System**, **Universal Render Pipeline 2D** e **TextMesh Pro**. Os saves são arquivos JSON no diretório que a Unity fornece por `Application.persistentDataPath`.
+O projeto usa C#, Unity Input System, Universal Render Pipeline 2D e TextMesh Pro. Os saves ficam no diretório que o Unity fornece por `Application.persistentDataPath`.
 
 ## Documentação
 
-- [GDD — Game Design Document](Documents/v1.0%20-%20GDD%20-%20Game%20Design%20Document%20-%2008.10.2026.pdf)
-- [TD — Technical Document](Documents/v1.0%20-%20TD%20-%20Technical%20Document%20-%2008.10.2026.pdf)
+- [GDD — Game Design Document, v1.1](Documents/v1.1%20-%20GDD%20-%20Game%20Design%20Document%20-%2008.10.2026.pdf)
+- [Documento técnico, v1.1](Documents/v1.1%20-%20TD%20-%20Technical%20Document%20-%2008.10.2026.docx)
 
-## Autoria e recursos
+## Autoria
 
-Projeto desenvolvido por **Igor Filipi**, **Heloisa Silva**, **Isaac Silva** e **Amanda Lima**. O repositório contém recursos de terceiros; a autoria e as condições de uso desses recursos devem ser consultadas nos respectivos pacotes e arquivos de licença. Os rascunhos de trabalho da documentação permanecem locais; as versões em PDF estão na pasta `Documents/`.
+Projeto desenvolvido por **Igor Filipi**, **Heloisa Silva**, **Isaac Silva** e **Amanda Lima**. Os recursos de terceiros mantêm as condições de uso dos respectivos autores e pacotes.

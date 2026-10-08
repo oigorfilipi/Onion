@@ -12,6 +12,8 @@ public class NpcDialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text speakerText;
     [SerializeField] private TMP_Text bodyText;
     [SerializeField] private TMP_Text interactionHint;
+    [SerializeField, Tooltip("Use {npc} no lugar do nome do personagem com quem falar.")]
+    private string interactionHintFormat = "F: Conversar com {npc}";
 
     private PlayerVitals playerVitals;
     private PlayerController playerController;
@@ -70,7 +72,8 @@ public class NpcDialogueUI : MonoBehaviour
         if (interactionHint != null)
         {
             interactionHint.gameObject.SetActive(nearby != null);
-            if (nearby != null) interactionHint.text = "F: Conversar com " + nearby.DisplayName;
+            if (nearby != null)
+                interactionHint.text = interactionHintFormat.Replace("{npc}", nearby.DisplayName);
         }
 
         if (nearby != null && Keyboard.current.fKey.wasPressedThisFrame) OpenDialogue(nearby);
@@ -156,6 +159,13 @@ public class NpcDialogueUI : MonoBehaviour
                 GameSession.SetNextArrowRefillAt(GameSession.RunElapsedSeconds + 60f);
             }
         }
+        else if (npc.Role == NpcRole.Mercadora && !alreadyClaimed)
+        {
+            int given = GiveItem("Capacete de Ferro", 1);
+            given += GiveItem("Peitoral de Ferro", 1);
+            given += GiveItem("Botas de Ferro", 1);
+            if (given > 0) GameSession.ClaimNpcReward(npc.Role);
+        }
 
         saveController?.SaveGame();
     }
@@ -199,9 +209,28 @@ public class NpcDialogueUI : MonoBehaviour
     private void RefreshLine()
     {
         if (speakerText != null) speakerText.text = currentNpc.DisplayName;
-        if (bodyText != null)
-            bodyText.text = currentNpc.DialogueLines != null && currentNpc.DialogueLines.Length > 0
-                ? currentNpc.DialogueLines[currentLine] : "Diálogo a definir.";
+        if (bodyText == null) return;
+        if (currentLine == 0)
+        {
+            string playerName = playerVitals != null ? playerVitals.PlayerName : "jogador";
+            switch (currentNpc.Role)
+            {
+                case NpcRole.Madrasta:
+                    bodyText.text = $"Olá {playerName}, pronto pra matança?";
+                    return;
+                case NpcRole.Velho:
+                    bodyText.text = "Com essa espada de Ferro aí, você não irá pra lugar nenhum.";
+                    return;
+                case NpcRole.Mercadora:
+                    bodyText.text = "Pelado assim, você pretende sobreviver por quanto tempo?";
+                    return;
+                case NpcRole.LoucoDoArco:
+                    bodyText.text = "Os Slimes gostam da aproximação, tenta algo mais distante.";
+                    return;
+            }
+        }
+        bodyText.text = currentNpc.DialogueLines != null && currentNpc.DialogueLines.Length > currentLine
+            ? currentNpc.DialogueLines[currentLine] : "Diálogo a definir.";
     }
 
     public void CloseDialogue()

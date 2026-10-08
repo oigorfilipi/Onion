@@ -10,7 +10,8 @@ public class Sword : MonoBehaviour
     [SerializeField] private GameObject slashAnimPrefab;
     [SerializeField] private Transform slashAnimSpawnPoint;
     [SerializeField] private Transform weaponCollider;
-    [SerializeField] private float swordAttackCD = .32f;
+    [SerializeField, Min(0f)] private float swordAttackCD = .1f;
+    [SerializeField, Min(0f)] private float facingSideOffset = 0.16f;
 
     private Animator myAnimator;
     private PlayerController playerController;
@@ -20,6 +21,8 @@ public class Sword : MonoBehaviour
     private bool isAttacking;
 
     private GameObject slashAnim;
+    private Transform cachedWeaponRoot;
+    private Vector3 weaponRootBasePosition;
 
     private void Awake()
     {
@@ -56,12 +59,14 @@ public class Sword : MonoBehaviour
         }
 
         isAttacking = true;
+        GameAudio.PlaySword();
         SetDamage(damage);
         if (myAnimator != null)
         {
             myAnimator.SetTrigger("Attack");
         }
 
+        damageSource?.BeginSwing();
         SetAttackColliderActive(true);
         slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
         slashAnim.transform.SetParent(transform.parent, true);
@@ -70,6 +75,7 @@ public class Sword : MonoBehaviour
 
     private IEnumerator AttackCDRoutine() {
         yield return new WaitForSeconds(swordAttackCD);
+        SetAttackColliderActive(false);
         isAttacking = false;
     }
 
@@ -90,10 +96,7 @@ public class Sword : MonoBehaviour
         slashAnim.transform.rotation = Quaternion.Euler(-180, 0, 0);
 
         SpriteRenderer slashRenderer = slashAnim.GetComponent<SpriteRenderer>();
-        if (playerController != null && playerController.FacingLeft && slashRenderer != null)
-        {
-            slashRenderer.flipX = true;
-        }
+        if (slashRenderer != null) slashRenderer.flipX = playerController != null && playerController.FacingLeft;
     }
 
     public void SwingDownFlipAnimEvent()
@@ -106,10 +109,7 @@ public class Sword : MonoBehaviour
         slashAnim.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         SpriteRenderer slashRenderer = slashAnim.GetComponent<SpriteRenderer>();
-        if (playerController != null && playerController.FacingLeft && slashRenderer != null)
-        {
-            slashRenderer.flipX = true;
-        }
+        if (slashRenderer != null) slashRenderer.flipX = playerController != null && playerController.FacingLeft;
     }
 
     private void MouseFollowWithOffset()
@@ -135,12 +135,20 @@ public class Sword : MonoBehaviour
         Transform weaponRoot = transform.parent != null && transform.parent != activeWeapon.transform
             ? transform.parent
             : activeWeapon.transform;
+        if (cachedWeaponRoot != weaponRoot)
+        {
+            cachedWeaponRoot = weaponRoot;
+            weaponRootBasePosition = weaponRoot.localPosition;
+        }
+        weaponRoot.localPosition = weaponRootBasePosition +
+            Vector3.right * (facingLeft ? -facingSideOffset : facingSideOffset);
         weaponRoot.rotation = Quaternion.Euler(0f, facingLeft ? 180f : 0f, angle);
     }
 
     public void SetAttackColliderActive(bool active)
     {
         CacheReferences();
+        if (!active) damageSource?.EndSwing();
         if (attackCollider != null)
         {
             attackCollider.enabled = active;

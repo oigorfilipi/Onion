@@ -9,12 +9,14 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField, Min(1)] private int startingHealth = 3;
     [SerializeField] private GameObject deathVFXPrefab;
-    [SerializeField] private float knockBackThrust = 15f;
+    [SerializeField, Min(0f)] private float knockBackThrust = 4f;
     [SerializeField, Min(0)] private int experienceReward;
 
     private Knockback knockback;
     private Flash flash;
     private bool isDying;
+    private string slimeKind = "Fire";
+    public bool IsBoss { get; private set; }
     private string worldSaveKey;
     public bool IsRuntimeSpawn { get; private set; }
     public string WorldSaveKey => string.IsNullOrEmpty(worldSaveKey)
@@ -24,6 +26,7 @@ public class EnemyHealth : MonoBehaviour
     public int MaxHealth => startingHealth;
     public int CurrentHealth { get; private set; }
     public bool IsDead => CurrentHealth <= 0;
+    public string SlimeKind => slimeKind;
 
     public void ConfigureRuntimeHealth(float multiplier)
     {
@@ -33,9 +36,17 @@ public class EnemyHealth : MonoBehaviour
         HealthChanged?.Invoke();
     }
 
+    public void ConfigureAsBoss(float multiplier = 3f)
+    {
+        IsBoss = true;
+        ConfigureRuntimeHealth(multiplier);
+    }
+
     private void Awake()
     {
         worldSaveKey = WorldProgressKey.For(this);
+        string lowerName = gameObject.name.ToLowerInvariant();
+        slimeKind = lowerName.Contains("ghost") || lowerName.Contains("fantasma") ? "Ghost" : "Fire";
         CurrentHealth = startingHealth;
         flash = GetComponent<Flash>();
         knockback = GetComponent<Knockback>();
@@ -55,6 +66,9 @@ public class EnemyHealth : MonoBehaviour
         }
 
         CurrentHealth = Mathf.Max(0, CurrentHealth - damage);
+        WorldDamageNumbers.Show(transform.position + Vector3.up * 0.75f, damage,
+            IsBoss ? new Color(1f, 0.55f, 0.2f) : Color.white);
+        GameAudio.PlayHit();
         HealthChanged?.Invoke();
 
         if (knockback != null && PlayerController.Instance != null)
@@ -72,6 +86,8 @@ public class EnemyHealth : MonoBehaviour
             isDying = true;
             FindAnyObjectByType<SaveController>()?.RegisterDefeatedEnemy(this);
             attacker?.GainExperience(experienceReward);
+            GameSession.RecordEnemyKill(IsBoss ? "Boss" : slimeKind);
+            GameSession.AddCoins(5);
             EnemyAI enemyAI = GetComponent<EnemyAI>();
             if (enemyAI != null)
             {

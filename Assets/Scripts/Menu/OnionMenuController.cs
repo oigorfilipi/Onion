@@ -34,6 +34,8 @@ public class OnionMenuController : MonoBehaviour
     private Texture2D capturedScreenshot;
 
     public bool IsPauseOpenOrOpening => isPauseMenu && (paused || pausing);
+    public bool IsPauseMenu => isPauseMenu;
+    public bool IsMenuVisible => menuRoot != null && menuRoot.activeInHierarchy;
 
     private void Awake()
     {

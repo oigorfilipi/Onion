@@ -30,6 +30,10 @@ GDD/
 **/*GDD*
 !Documents/
 !Documents/**
+~$*.docx
+*~
+Assets/Scenes/*_Backup_PreAtualizacao.unity
+Assets/Scenes/*_Backup_PreAtualizacao.unity.meta
 
 # IDE and editor local state
 .vs/

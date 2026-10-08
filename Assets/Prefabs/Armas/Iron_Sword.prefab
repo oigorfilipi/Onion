@@ -262,4 +262,4 @@ MonoBehaviour:
   slashAnimPrefab: {fileID: 5152758187838861262, guid: 97af9dbd8ac760240ba3843e92711ae3, type: 3}
   slashAnimSpawnPoint: {fileID: 6206459027267501394}
   weaponCollider: {fileID: 0}
-  swordAttackCD: 0.32
+  swordAttackCD: 0.1

@@ -59,6 +59,9 @@ public class SaveController : MonoBehaviour
         if (mode == GameSession.StartMode.NewGame || mode == GameSession.StartMode.Restart)
         {
             ResetProgress(requestedName);
+            PlayerProfileService.BeginRun(GameSession.CurrentRunId, GameSession.CurrentSlotIndex,
+                playerVitals != null ? playerVitals.PlayerName : requestedName,
+                GameSession.CurrentDifficulty);
             if (SceneSpawnPoint.TryFind("Casa", out Vector3 homePosition))
                 player.transform.position = homePosition;
             SaveGame();
@@ -80,6 +83,9 @@ public class SaveController : MonoBehaviour
         ItemStack.AnyQuantityChanged += QueueSave;
         if (equipmentController != null) equipmentController.EquipmentChanged += QueueSave;
         if (playerVitals != null) playerVitals.StatsChanged += QueueSave;
+        if (playerVitals != null) playerVitals.Died += SaveGame;
+        GameSession.ProgressChanged += QueueSave;
+        QuickbarController.AnySlotChanged += QueueSave;
         initialized = true;
     }
 
@@ -92,10 +98,15 @@ public class SaveController : MonoBehaviour
 
     private void OnDestroy()
     {
+        // Um evento de inventário no último quadro pode ter deixado um save na fila.
+        if (initialized && saveQueued && !loading && player != null) SaveGame();
         Slot.AnySlotChanged -= QueueSave;
         ItemStack.AnyQuantityChanged -= QueueSave;
         if (equipmentController != null) equipmentController.EquipmentChanged -= QueueSave;
         if (playerVitals != null) playerVitals.StatsChanged -= QueueSave;
+        if (playerVitals != null) playerVitals.Died -= SaveGame;
+        GameSession.ProgressChanged -= QueueSave;
+        QuickbarController.AnySlotChanged -= QueueSave;
     }
 
     public void RegisterCollectedWorldItem(Item item)
@@ -195,9 +206,21 @@ public class SaveController : MonoBehaviour
             playerStamina = playerVitals != null ? playerVitals.CurrentStamina : 0,
             playerLevel = playerVitals != null ? playerVitals.Level : 1,
             playerExperience = playerVitals != null ? playerVitals.Experience : 0,
+            remainingFireImmunity = playerVitals != null ? playerVitals.RemainingFireImmunity : 0f,
+            remainingPoisonImmunity = playerVitals != null ? playerVitals.RemainingPoisonImmunity : 0f,
             difficulty = (int)GameSession.CurrentDifficulty,
             runElapsedSeconds = GameSession.RunElapsedSeconds,
             runWon = GameSession.RunWon,
+            playerDead = playerVitals != null && playerVitals.IsDead,
+            runId = GameSession.CurrentRunId,
+            runCoins = GameSession.RunCoins,
+            runEnemiesKilled = GameSession.RunEnemiesKilled,
+            runFireSlimesKilled = GameSession.RunFireSlimesKilled,
+            runGhostSlimesKilled = GameSession.RunGhostSlimesKilled,
+            runBossSlimesKilled = GameSession.RunBossSlimesKilled,
+            runUsedIronSword = GameSession.RunUsedIronSword,
+            runUsedBow = GameSession.RunUsedBow,
+            runUsedMeleeWeapon = GameSession.RunUsedMeleeWeapon,
             claimedNpcRewards = GameSession.ClaimedNpcRewards,
             nextArrowRefillAt = GameSession.NextArrowRefillAt,
             inventorySaveData = inventoryController != null
@@ -206,6 +229,8 @@ public class SaveController : MonoBehaviour
                 ? equipmentController.GetEquipmentItems() : new List<EquipmentSaveData>(),
             backpackSaveData = backpackController != null
                 ? backpackController.GetBackpackItems() : new List<InventorySaveData>(),
+            quickbarSaveData = FindAnyObjectByType<QuickbarController>() != null
+                ? FindAnyObjectByType<QuickbarController>().GetSavedItems() : new List<QuickbarSaveData>(),
             collectedWorldItems = new List<string>(collectedWorldItems),
             defeatedEnemies = new List<string>(defeatedEnemies),
             pendingRewardDrops = new List<PendingRewardDrop>(pendingRewardDrops)
@@ -213,7 +238,30 @@ public class SaveController : MonoBehaviour
 
         try
         {
-            File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
+            string directory = Path.GetDirectoryName(saveLocation);
+            if (!string.IsNullOrEmpty(directory)) Directory.CreateDirectory(directory);
+            string temporaryPath = saveLocation + ".tmp";
+            File.WriteAllText(temporaryPath, JsonUtility.ToJson(saveData));
+            if (File.Exists(saveLocation)) File.Replace(temporaryPath, saveLocation, saveLocation + ".bak");
+            else File.Move(temporaryPath, saveLocation);
+            Item primaryWeapon = equipmentController != null &&
+                equipmentController.GetSlot(EquipmentSlotType.PrimaryWeapon) != null
+                ? equipmentController.GetSlot(EquipmentSlotType.PrimaryWeapon).CurrentItem?.GetComponent<Item>()
+                : null;
+            int swordDamage = primaryWeapon != null
+                ? primaryWeapon.weaponDamage + (playerVitals != null ? playerVitals.SwordDamageBonus : 0) : 0;
+            int bowDamage = 7 + (playerVitals != null ? playerVitals.SwordDamageBonus : 0);
+            PlayerProfileService.SyncRun(GameSession.CurrentRunId, saveData.playerName,
+                GameSession.CurrentSlotIndex, GameSession.CurrentDifficulty, GameSession.RunElapsedSeconds,
+                saveData.playerLevel, playerVitals != null ? playerVitals.MaxHealth : 0,
+                playerVitals != null ? playerVitals.MaxStamina : 0,
+                playerVitals != null ? playerVitals.CurrentHealth : 0,
+                playerVitals != null ? playerVitals.CurrentStamina : 0, swordDamage, bowDamage,
+                playerVitals != null ? playerVitals.Defense : 0, GameSession.RunCoins,
+                GameSession.RunEnemiesKilled, GameSession.RunFireSlimesKilled,
+                GameSession.RunGhostSlimesKilled, GameSession.RunBossSlimesKilled,
+                GameSession.RunUsedIronSword, GameSession.RunUsedBow, GameSession.RunUsedMeleeWeapon,
+                playerVitals != null && playerVitals.IsDead, GameSession.RunWon);
             saveQueued = false;
         }
         catch (System.Exception exception)
@@ -252,7 +300,16 @@ public class SaveController : MonoBehaviour
         loading = true;
         GameSession.SetDifficulty(saveData.difficulty);
         GameSession.RestoreRunProgress(saveData.runElapsedSeconds, saveData.runWon,
-                                       saveData.claimedNpcRewards, saveData.nextArrowRefillAt);
+            saveData.claimedNpcRewards, saveData.nextArrowRefillAt, saveData.runCoins,
+            saveData.runEnemiesKilled, saveData.runFireSlimesKilled, saveData.runGhostSlimesKilled,
+            saveData.runBossSlimesKilled, saveData.runUsedIronSword, saveData.runUsedBow,
+            saveData.runUsedMeleeWeapon, saveData.runId, GameSession.CurrentSlotIndex);
+        if (saveData.playerDead || saveData.runWon)
+        {
+            loading = false;
+            Debug.LogWarning("Essa tentativa já terminou e não pode ser continuada. Inicie um novo jogo nessa vaga.");
+            return;
+        }
         collectedWorldItems.Clear();
         defeatedEnemies.Clear();
         pendingRewardDrops.Clear();
@@ -274,8 +331,11 @@ public class SaveController : MonoBehaviour
         {
             playerVitals.SetPlayerName(saveData.playerName);
             playerVitals.RestoreSavedVitals(saveData.playerHealth, saveData.playerStamina,
-                                            saveData.playerLevel, saveData.playerExperience);
+                                            saveData.playerLevel, saveData.playerExperience,
+                                            saveData.remainingFireImmunity,
+                                            saveData.remainingPoisonImmunity);
         }
+        FindAnyObjectByType<QuickbarController>()?.SetSavedItems(saveData.quickbarSaveData);
 
         ApplyWorldProgress();
         RestoreRewardDrops();
@@ -343,6 +403,7 @@ public class SaveController : MonoBehaviour
         inventoryController?.SetInventoryItems(new List<InventorySaveData>());
         equipmentController?.SetEquipmentItems(new List<EquipmentSaveData>());
         backpackController?.SetBackpackItems(new List<InventorySaveData>());
+        FindAnyObjectByType<QuickbarController>()?.SetSavedItems(new List<QuickbarSaveData>());
         playerVitals?.ResetForNewGame(playerName);
         loading = false;
     }
@@ -382,5 +443,17 @@ public class SaveController : MonoBehaviour
     private void OnApplicationQuit()
     {
         if (initialized) SaveGame();
+    }
+
+    private void OnApplicationPause(bool paused)
+    {
+        if (paused && initialized && playerVitals != null && !playerVitals.IsDead && !GameSession.RunWon)
+            SaveGame();
+    }
+
+    private void OnApplicationFocus(bool focused)
+    {
+        if (!focused && initialized && playerVitals != null && !playerVitals.IsDead && !GameSession.RunWon)
+            SaveGame();
     }
 }

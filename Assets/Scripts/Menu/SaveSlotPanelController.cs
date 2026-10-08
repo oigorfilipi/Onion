@@ -4,16 +4,19 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
-/// Mostra dificuldade, nome e cinco vagas, incluindo confirmação para sobrescrever um save.
+/// Alterna entre o painel de dificuldade e as cinco vagas de save, incluindo confirmação para sobrescrever.
 /// </summary>
 public class SaveSlotPanelController : MonoBehaviour
 {
     [SerializeField] private string gameSceneName = "SampleScene";
     [SerializeField] private string startingSceneName = "CasaInterior";
     [SerializeField] private Button[] slotButtons = new Button[SaveSlotService.SlotCount];
+    [SerializeField] private GameObject difficultyPanel;
+    [SerializeField] private Button[] difficultyButtons = new Button[4];
     [SerializeField] private TMP_InputField playerNameInput;
     [SerializeField] private TMP_Text headingText;
     [SerializeField] private TMP_Text statusText;
+    [SerializeField] private GameObject saveBackButton;
     [SerializeField] private GameObject overwritePanel;
     [SerializeField] private TMP_Text overwriteText;
 
@@ -31,6 +34,20 @@ public class SaveSlotPanelController : MonoBehaviour
             {
                 slotButtons[i].onClick.AddListener(() => SelectSlot(slotIndex));
             }
+        }
+
+        for (int i = 0; i < Mathf.Min(difficultyButtons.Length, 4); i++)
+        {
+            int difficultyIndex = i;
+            if (difficultyButtons[i] != null)
+            {
+                difficultyButtons[i].onClick.AddListener(() => SelectDifficulty(difficultyIndex));
+            }
+        }
+
+        if (difficultyPanel != null)
+        {
+            difficultyPanel.SetActive(false);
         }
 
         if (overwritePanel != null)
@@ -57,6 +74,10 @@ public class SaveSlotPanelController : MonoBehaviour
     {
         pendingOverwriteSlot = 0;
         choosingDifficulty = false;
+        if (difficultyPanel != null)
+        {
+            difficultyPanel.SetActive(false);
+        }
         if (overwritePanel != null)
         {
             overwritePanel.SetActive(false);
@@ -88,6 +109,7 @@ public class SaveSlotPanelController : MonoBehaviour
 
     private void Open()
     {
+        SaveSlotService.ImportStandaloneSave();
         gameObject.SetActive(true);
         pendingOverwriteSlot = 0;
         if (overwritePanel != null)
@@ -97,9 +119,10 @@ public class SaveSlotPanelController : MonoBehaviour
 
         if (headingText != null)
         {
-            headingText.text = choosingDifficulty ? "ESCOLHA A DIFICULDADE" :
-                creatingNewGame ? "NOVO JOGO - ESCOLHA A VAGA" : "CONTINUAR";
+            headingText.text = creatingNewGame ? "NOVO JOGO - ESCOLHA A VAGA" : "CONTINUAR";
         }
+
+        ShowSavePanelContent(!choosingDifficulty);
 
         if (playerNameInput != null)
         {
@@ -108,17 +131,14 @@ public class SaveSlotPanelController : MonoBehaviour
 
         SetStatus(string.Empty);
         RefreshSlots();
+        if (difficultyPanel != null)
+        {
+            difficultyPanel.SetActive(choosingDifficulty);
+        }
     }
 
     private void RefreshSlots()
     {
-        string[] difficultyLabels =
-        {
-            "FÁCIL - 3 MINUTOS",
-            "MÉDIO - 10 MINUTOS",
-            "DIFÍCIL - 15 MINUTOS",
-            "INSANO - TEMPO ILIMITADO"
-        };
         for (int i = 0; i < Mathf.Min(slotButtons.Length, SaveSlotService.SlotCount); i++)
         {
             Button button = slotButtons[i];
@@ -127,51 +147,57 @@ public class SaveSlotPanelController : MonoBehaviour
                 continue;
             }
 
-            button.gameObject.SetActive(!choosingDifficulty || i < difficultyLabels.Length);
+            button.gameObject.SetActive(!choosingDifficulty);
             if (choosingDifficulty)
             {
-                button.interactable = true;
-                TMP_Text difficultyLabel = button.GetComponentInChildren<TMP_Text>(true);
-                if (difficultyLabel != null) difficultyLabel.text = difficultyLabels[i];
                 continue;
             }
 
             int slotIndex = i + 1;
             bool readable = SaveSlotService.TryRead(slotIndex, out SaveData saveData);
             bool exists = SaveSlotService.Exists(slotIndex);
-            button.interactable = creatingNewGame || readable;
+            bool canContinue = readable && !saveData.playerDead && !saveData.runWon;
+            button.interactable = creatingNewGame || canContinue;
 
             TMP_Text label = button.GetComponentInChildren<TMP_Text>(true);
             if (label != null)
             {
                 label.text = readable
-                    ? $"VAGA {slotIndex} - {saveData.playerName} (Nível {Mathf.Max(1, saveData.playerLevel)})"
+                    ? $"VAGA {slotIndex} - {saveData.playerName} (Nível {Mathf.Max(1, saveData.playerLevel)})" +
+                      (canContinue ? string.Empty : " - TENTATIVA ENCERRADA")
                     : exists ? $"VAGA {slotIndex} - SAVE INDISPONÍVEL" : $"VAGA {slotIndex} - LIVRE";
             }
         }
     }
 
-    // O mesmo conjunto de botões seleciona primeiro a dificuldade e depois uma das cinco vagas.
-    private void SelectSlot(int slotIndex)
+    // Os botões do painel de dificuldade são independentes dos cinco botões de save.
+    private void SelectDifficulty(int difficultyIndex)
     {
-        if (creatingNewGame && choosingDifficulty)
+        if (!creatingNewGame || !choosingDifficulty)
         {
-            switch (slotIndex)
-            {
-                case 1: selectedDifficulty = GameSession.Difficulty.Easy; break;
-                case 2: selectedDifficulty = GameSession.Difficulty.Medium; break;
-                case 3: selectedDifficulty = GameSession.Difficulty.Hard; break;
-                case 4: selectedDifficulty = GameSession.Difficulty.Insane; break;
-                default: return;
-            }
-
-            choosingDifficulty = false;
-            if (headingText != null) headingText.text = "NOVO JOGO - ESCOLHA A VAGA";
-            if (playerNameInput != null) playerNameInput.gameObject.SetActive(true);
-            RefreshSlots();
-            SetStatus("Digite seu nome e escolha uma das cinco vagas.");
             return;
         }
+
+        switch (difficultyIndex)
+        {
+            case 0: selectedDifficulty = GameSession.Difficulty.Easy; break;
+            case 1: selectedDifficulty = GameSession.Difficulty.Medium; break;
+            case 2: selectedDifficulty = GameSession.Difficulty.Hard; break;
+            case 3: selectedDifficulty = GameSession.Difficulty.Insane; break;
+            default: return;
+        }
+
+        choosingDifficulty = false;
+        if (difficultyPanel != null) difficultyPanel.SetActive(false);
+        ShowSavePanelContent(true);
+        if (playerNameInput != null) playerNameInput.gameObject.SetActive(true);
+        RefreshSlots();
+        SetStatus("Digite seu nome e escolha uma das cinco vagas.");
+    }
+
+    private void SelectSlot(int slotIndex)
+    {
+        if (choosingDifficulty) return;
 
         if (creatingNewGame)
         {
@@ -213,6 +239,12 @@ public class SaveSlotPanelController : MonoBehaviour
             return;
         }
 
+        if (saveData.playerDead || saveData.runWon)
+        {
+            SetStatus("Essa tentativa terminou. Escolha Novo Jogo para usar essa vaga novamente.");
+            return;
+        }
+
         GameSession.ChooseContinue(slotIndex);
         Time.timeScale = 1f;
         SceneManager.LoadScene(string.IsNullOrWhiteSpace(saveData.sceneName)
@@ -240,5 +272,14 @@ public class SaveSlotPanelController : MonoBehaviour
         {
             statusText.text = message;
         }
+    }
+
+    private void ShowSavePanelContent(bool show)
+    {
+        Image background = GetComponent<Image>();
+        if (background != null) background.enabled = show;
+        if (headingText != null) headingText.gameObject.SetActive(show);
+        if (statusText != null) statusText.gameObject.SetActive(show);
+        if (saveBackButton != null) saveBackButton.SetActive(show);
     }
 }

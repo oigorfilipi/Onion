@@ -11,6 +11,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private IItemSlot registeredSlot;
     private IItemSlot originalSlot;
     private bool isDragging;
+    private float lastQuickbarClickTime = -1f;
     private Vector3 defaultLocalScale;
     private bool hasDefaultLocalScale;
 
@@ -220,44 +221,22 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     // Clique direito consome uma cura de um slot comum somente quando o jogador pode recuperar vida.
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (isDragging || eventData.button != PointerEventData.InputButton.Right)
-        {
-            return;
-        }
-
-        Item item = GetComponent<Item>();
+        if (isDragging) return;
         IItemSlot slot = FindSlotInParents(transform.parent);
-        PlayerVitals playerVitals = FindAnyObjectByType<PlayerVitals>();
-        if (item == null || item.healAmount <= 0 || slot is not Slot ||
-            slot.CurrentItem != gameObject || playerVitals == null ||
-            playerVitals.IsDead || playerVitals.CurrentHealth >= playerVitals.MaxHealth)
+        if (slot == null || slot.CurrentItem != gameObject) return;
+
+        if (eventData.button == PointerEventData.InputButton.Right)
         {
+            ItemUseService.TryUse(gameObject, slot);
             return;
         }
 
-        ItemStack stack = ItemStack.Ensure(gameObject);
-        if (stack.Quantity > 1)
+        if (eventData.button == PointerEventData.InputButton.Left && slot is QuickbarSlot quickbarSlot)
         {
-            if (playerVitals.Heal(item.healAmount))
-            {
-                stack.RemoveUpTo(1);
-            }
-
-            return;
-        }
-
-        if (!slot.TryRemoveItem(gameObject))
-        {
-            return;
-        }
-
-        if (playerVitals.Heal(item.healAmount))
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            slot.TrySetItem(gameObject);
+            quickbarSlot.SelectFromItem();
+            if (Time.unscaledTime - lastQuickbarClickTime <= 0.35f)
+                ItemUseService.TryUse(gameObject, slot);
+            lastQuickbarClickTime = Time.unscaledTime;
         }
     }
 
@@ -299,6 +278,13 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         transform.localScale = defaultLocalScale;
     }
 
+    // A barra rápida compacta o ícone, mas preserva a escala original para os outros slots.
+    public void SetQuickbarVisualScale(float multiplier)
+    {
+        CacheDefaultScale();
+        transform.localScale = defaultLocalScale * Mathf.Max(0.01f, multiplier);
+    }
+
     private static bool CanRemove(IItemSlot slot)
     {
         return slot is not EquipmentSlot equipmentSlot || equipmentSlot.CanRemoveItem;
@@ -320,6 +306,12 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             if (inventorySlot != null)
             {
                 return inventorySlot;
+            }
+
+            QuickbarSlot quickbarSlot = current.GetComponent<QuickbarSlot>();
+            if (quickbarSlot != null)
+            {
+                return quickbarSlot;
             }
 
             current = current.parent;

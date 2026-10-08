@@ -233,7 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   startingHealth: 25
   deathVFXPrefab: {fileID: 5178821613737937683, guid: 9e333af54c78d35449796974a7bb1392, type: 3}
-  knockBackThrust: 15
+  knockBackThrust: 4
   experienceReward: 15
 --- !u!114 &3136246197576289063
 MonoBehaviour:
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2497eb8cb6a254e49b230e78a2a8841b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Knockback
-  knockBackTime: 0.2
+  knockBackTime: 0.08
 --- !u!114 &5623120699316594701
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,11 +13,13 @@ public class PlayerVitalsHUD : MonoBehaviour
     [SerializeField] private TMP_Text staminaText;
     [SerializeField] private Image experienceFill;
     [SerializeField] private TMP_Text experienceText;
+    [SerializeField] private Sprite achievementTrophySprite;
 
     private PlayerVitals playerVitals;
     private MenuController inventoryMenu;
     private OnionMenuController pauseMenu;
     private CanvasGroup canvasGroup;
+    public Sprite AchievementTrophySprite => achievementTrophySprite;
 
     private void Awake()
     {
@@ -122,7 +124,7 @@ public class PlayerVitalsHUD : MonoBehaviour
 
         if (experienceText != null)
         {
-            experienceText.text = $"Nível {playerVitals.Level}  •  " +
+            experienceText.text = $"Nível {playerVitals.Level}  |  " +
                                   $"{playerVitals.Experience}/{playerVitals.ExperienceToNextLevel} XP";
         }
     }

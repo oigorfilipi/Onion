@@ -107,16 +107,20 @@ public class InventoryController : MonoBehaviour
 
     public int CountItem(string itemName)
     {
-        if (inventoryPanel == null || string.IsNullOrEmpty(itemName)) return 0;
+        if (string.IsNullOrEmpty(itemName)) return 0;
         int count = 0;
-        foreach (Transform slotTransform in inventoryPanel.transform)
+        if (inventoryPanel != null)
         {
-            Slot slot = slotTransform.GetComponent<Slot>();
-            Item item = slot != null && slot.currentItem != null
-                ? slot.currentItem.GetComponent<Item>() : null;
-            if (item != null && item.Name == itemName)
-                count += item.GetComponent<ItemStack>()?.Quantity ?? 1;
+            foreach (Transform slotTransform in inventoryPanel.transform)
+            {
+                Slot slot = slotTransform.GetComponent<Slot>();
+                Item item = slot != null && slot.currentItem != null
+                    ? slot.currentItem.GetComponent<Item>() : null;
+                if (item != null && item.Name == itemName)
+                    count += item.GetComponent<ItemStack>()?.Quantity ?? 1;
+            }
         }
+        count += FindAnyObjectByType<QuickbarController>()?.CountItem(itemName) ?? 0;
         return count;
     }
 
@@ -124,7 +128,7 @@ public class InventoryController : MonoBehaviour
     {
         if (inventoryPanel == null || string.IsNullOrWhiteSpace(itemName))
         {
-            return false;
+            return FindAnyObjectByType<QuickbarController>()?.TryConsumeItem(itemName) ?? false;
         }
 
         foreach (Transform slotTransform in inventoryPanel.transform)
@@ -155,7 +159,7 @@ public class InventoryController : MonoBehaviour
             return true;
         }
 
-        return false;
+        return FindAnyObjectByType<QuickbarController>()?.TryConsumeItem(itemName) ?? false;
     }
 
     public List<InventorySaveData> GetInventoryItems()
@@ -282,6 +286,7 @@ public class InventoryController : MonoBehaviour
         }
 
         GameObject item = Instantiate(itemPrefab, slotTransform, false);
+        item.layer = LayerMask.NameToLayer("UI");
         RectTransform itemRect = item.GetComponent<RectTransform>();
         Image itemImage = item.GetComponentInChildren<Image>(true);
 

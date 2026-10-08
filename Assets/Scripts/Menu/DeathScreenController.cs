@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
-/// Apresenta vitória ou derrota com fundo desfocado e reinicia a tentativa na casa.
+/// Apresenta telas separadas de vitória e derrota com fundo desfocado.
 /// </summary>
 public class DeathScreenController : MonoBehaviour
 {
@@ -13,8 +13,12 @@ public class DeathScreenController : MonoBehaviour
     [SerializeField] private RawImage blurredBackground;
     [SerializeField] private Material blurMaterial;
     [SerializeField] private TMP_Text defeatText;
-    [SerializeField] private TMP_Text actionButtonText;
     [SerializeField] private string homeSceneName = "CasaInterior";
+    [SerializeField] private GameObject victoryRoot;
+    [SerializeField] private RawImage victoryBackground;
+    [SerializeField] private TMP_Text victoryText;
+    [SerializeField] private TMP_Text victoryButtonText;
+    [SerializeField] private string mainMenuSceneName = "MainMenu";
 
     private PlayerVitals playerVitals;
     private Texture2D capturedScreenshot;
@@ -25,6 +29,7 @@ public class DeathScreenController : MonoBehaviour
     private void Awake()
     {
         if (deathRoot != null) deathRoot.SetActive(false);
+        if (victoryRoot != null) victoryRoot.SetActive(false);
     }
 
     private void Start()
@@ -43,6 +48,7 @@ public class DeathScreenController : MonoBehaviour
     {
         if (showing || deathRoot == null) return;
         showing = true;
+        GameAudio.PlayDefeat();
         MenuController inventoryMenu = FindAnyObjectByType<MenuController>();
         if (inventoryMenu != null && inventoryMenu.menuCanvas != null)
             inventoryMenu.menuCanvas.SetActive(false);
@@ -53,11 +59,12 @@ public class DeathScreenController : MonoBehaviour
         StartCoroutine(CaptureAndShow(false));
     }
 
-    // Usa a mesma estrutura visual da derrota, com título verde, após o limite de tempo.
+    // Exibe a cópia verde da tela de derrota quando o tempo da partida termina.
     public void ShowVictory()
     {
-        if (showing || deathRoot == null) return;
+        if (showing || victoryRoot == null) return;
         showing = true;
+        GameAudio.PlayVictory();
         MenuController inventoryMenu = FindAnyObjectByType<MenuController>();
         if (inventoryMenu != null && inventoryMenu.menuCanvas != null)
             inventoryMenu.menuCanvas.SetActive(false);
@@ -71,28 +78,32 @@ public class DeathScreenController : MonoBehaviour
     private IEnumerator CaptureAndShow(bool victory)
     {
         yield return new WaitForEndOfFrame();
-        if (blurredBackground != null)
+        RawImage background = victory ? victoryBackground : blurredBackground;
+        if (background != null)
         {
             capturedScreenshot = ScreenCapture.CaptureScreenshotAsTexture();
-            blurredBackground.texture = capturedScreenshot;
-            blurredBackground.raycastTarget = false;
-            if (blurMaterial != null) blurredBackground.material = blurMaterial;
+            background.texture = capturedScreenshot;
+            background.raycastTarget = false;
+            if (blurMaterial != null) background.material = blurMaterial;
         }
 
-        if (defeatText != null)
+        if (victory)
         {
-            defeatText.text = victory ? "VITÓRIA" : "DERROTADO";
-            defeatText.color = victory ? new Color(0.3f, 1f, 0.35f) : Color.red;
+            if (victoryText != null)
+            {
+                victoryText.text = "VITÓRIA";
+                victoryText.color = new Color(0.3f, 1f, 0.35f);
+            }
+            if (victoryButtonText != null) victoryButtonText.text = "VOLTAR AO MENU";
         }
-
-        if (actionButtonText != null)
+        else if (defeatText != null)
         {
-            actionButtonText.text = victory ? "RECOMEÇAR" : "RENASCER";
-            actionButtonText.color = victory ? new Color(0.3f, 1f, 0.35f) : Color.white;
+            defeatText.text = "DERROTADO";
+            defeatText.color = Color.red;
         }
 
         Time.timeScale = 0f;
-        deathRoot.SetActive(true);
+        (victory ? victoryRoot : deathRoot).SetActive(true);
     }
 
     public void RespawnFromBeginning()
@@ -104,10 +115,18 @@ public class DeathScreenController : MonoBehaviour
         SceneManager.LoadScene(homeSceneName);
     }
 
+    public void ReturnToMainMenu()
+    {
+        if (!showing || victoryRoot == null || !victoryRoot.activeInHierarchy) return;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
+
     private void OnDestroy()
     {
         if (playerVitals != null) playerVitals.Died -= OnPlayerDied;
         if (blurredBackground != null) blurredBackground.texture = null;
+        if (victoryBackground != null) victoryBackground.texture = null;
         if (capturedScreenshot != null) Destroy(capturedScreenshot);
     }
 }

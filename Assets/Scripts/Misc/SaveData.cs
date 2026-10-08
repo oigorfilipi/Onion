@@ -15,9 +15,22 @@ public class SaveData
     public int playerStamina;
     public int playerLevel;
     public int playerExperience;
+    public float remainingFireImmunity;
+    public float remainingPoisonImmunity;
     public int difficulty;
     public float runElapsedSeconds;
     public bool runWon;
+    public bool playerDead;
+    public string runId;
+    public int runCoins;
+    public int runEnemiesKilled;
+    public int runFireSlimesKilled;
+    public int runGhostSlimesKilled;
+    public int runBossSlimesKilled;
+    public bool runUsedIronSword;
+    public bool runUsedBow;
+    public bool runUsedMeleeWeapon;
+    public List<QuickbarSaveData> quickbarSaveData;
     public int claimedNpcRewards;
     public float nextArrowRefillAt;
     public List<InventorySaveData> inventorySaveData;
@@ -26,6 +39,14 @@ public class SaveData
     public List<string> collectedWorldItems;
     public List<string> defeatedEnemies;
     public List<PendingRewardDrop> pendingRewardDrops;
+}
+
+[System.Serializable]
+public class QuickbarSaveData
+{
+    public int itemID;
+    public int slotIndex;
+    public int quantity;
 }
 
 /// <summary>Registra um presente de NPC deixado no chão porque o inventário estava cheio.</summary>

@@ -54,6 +54,65 @@ public static class SaveSlotService
             : slotPath;
     }
 
+    // Saves criados ao iniciar uma cena diretamente no Editor usavam saveData.json.
+    // Ao abrir o menu, importa a tentativa para uma vaga livre sem apagar outra partida.
+    public static void ImportStandaloneSave()
+    {
+        string legacyPath = Path.Combine(Application.persistentDataPath, "saveData.json");
+        if (!File.Exists(legacyPath)) return;
+
+        SaveData legacy;
+        try { legacy = JsonUtility.FromJson<SaveData>(File.ReadAllText(legacyPath)); }
+        catch (Exception exception)
+        {
+            Debug.LogWarning($"Save avulso não pôde ser lido: {exception.Message}");
+            return;
+        }
+        if (legacy == null || legacy.playerDead || legacy.runWon) return;
+
+        int matchingSlot = 0;
+        int freeSlot = 0;
+        for (int slot = 1; slot <= SlotCount; slot++)
+        {
+            string slotPath = GetSlotPath(slot);
+            if (!File.Exists(slotPath))
+            {
+                if (freeSlot == 0) freeSlot = slot;
+                continue;
+            }
+            try
+            {
+                SaveData existing = JsonUtility.FromJson<SaveData>(File.ReadAllText(slotPath));
+                if (!string.IsNullOrEmpty(legacy.runId) && existing != null &&
+                    existing.runId == legacy.runId)
+                {
+                    // Uma partida encerrada não pode ser reativada pelo arquivo avulso antigo.
+                    if (existing.playerDead || existing.runWon) return;
+                    matchingSlot = slot;
+                }
+            }
+            catch (Exception exception)
+            {
+                Debug.LogWarning($"Vaga {slot} não pôde ser comparada: {exception.Message}");
+            }
+        }
+
+        int destinationSlot = matchingSlot != 0 ? matchingSlot : freeSlot;
+        if (destinationSlot == 0) return;
+        string destination = GetSlotPath(destinationSlot);
+        if (File.Exists(destination) &&
+            File.GetLastWriteTimeUtc(destination) >= File.GetLastWriteTimeUtc(legacyPath)) return;
+        try
+        {
+            File.Copy(legacyPath, destination, true);
+            Debug.Log($"Save avulso importado para a vaga {destinationSlot}.");
+        }
+        catch (Exception exception)
+        {
+            Debug.LogError($"Não foi possível importar o save avulso: {exception.Message}");
+        }
+    }
+
     public static bool IsValidName(string playerName)
     {
         return !string.IsNullOrWhiteSpace(playerName) && playerName.Trim().Length <= 40;

@@ -57,6 +57,11 @@ public class Item : MonoBehaviour
     [Min(0)] public int healthBonus;
     [Min(0)] public int staminaBonus;
     [Min(0)] public int healAmount;
+    [Min(0)] public int staminaRestore;
+    [Min(0f)] public float fireImmunitySeconds;
+    [Min(0f)] public float poisonImmunitySeconds;
+    [Min(1f)] public float speedMultiplier = 1f;
+    [Min(0f)] public float speedDuration;
 
     // Mostra o nome e ícone do item ao coletá-lo no mundo; o item físico é removido pelo coletor.
     public virtual void PickUp()

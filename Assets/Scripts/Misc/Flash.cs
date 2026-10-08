@@ -12,6 +12,7 @@ public class Flash : MonoBehaviour
 
     private Material defaultMat;
     private SpriteRenderer spriteRenderer;
+    private float flashUntil;
 
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -23,8 +24,9 @@ public class Flash : MonoBehaviour
     }
 
     public IEnumerator FlashRoutine() {
+        flashUntil = Time.time + restoreDefaultMatTime;
         spriteRenderer.material = whiteFlashMat;
-        yield return new WaitForSeconds(restoreDefaultMatTime);
+        while (Time.time < flashUntil) yield return null;
         spriteRenderer.material = defaultMat;
     }
 }

@@ -18,7 +18,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 165047704489055678, guid: 7aa19f1ee3bc58943b90b9614d4514a1, type: 3}
       propertyPath: stackable
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 165047704489055678, guid: 7aa19f1ee3bc58943b90b9614d4514a1, type: 3}
+      propertyPath: speedMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 165047704489055678, guid: 7aa19f1ee3bc58943b90b9614d4514a1, type: 3}
+      propertyPath: speedDuration
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 165047704489055678, guid: 7aa19f1ee3bc58943b90b9614d4514a1, type: 3}
       propertyPath: equipmentType

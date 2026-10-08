@@ -19,6 +19,7 @@ public class PrologueChallenge : MonoBehaviour
     private GameObject timerPanel;
     private TMP_Text timerText;
     private int savedCheckpoint = -1;
+    private int survivalCoinMilestone;
     public bool HasTimeLimit => GameSession.CurrentDifficulty != GameSession.Difficulty.Insane;
     public float DurationSeconds => GameSession.CurrentDifficulty switch
     {
@@ -34,6 +35,7 @@ public class PrologueChallenge : MonoBehaviour
         playerVitals = FindAnyObjectByType<PlayerVitals>();
         inventoryMenu = FindAnyObjectByType<MenuController>();
         pauseMenu = FindAnyObjectByType<OnionMenuController>();
+        survivalCoinMilestone = Mathf.FloorToInt(GameSession.RunElapsedSeconds / 300f);
         CreateTimerPanel();
     }
 
@@ -54,6 +56,12 @@ public class PrologueChallenge : MonoBehaviour
             (pauseMenu != null && pauseMenu.IsPauseOpenOrOpening)) return;
 
         GameSession.AddRunTime(Time.deltaTime);
+        int reachedRewardMilestone = Mathf.FloorToInt(GameSession.RunElapsedSeconds / 300f);
+        while (survivalCoinMilestone < reachedRewardMilestone)
+        {
+            survivalCoinMilestone++;
+            GameSession.AddCoins(10);
+        }
         if (HasTimeLimit && GameSession.RunElapsedSeconds >= DurationSeconds)
         {
             GameSession.MarkRunWon();
@@ -92,6 +100,14 @@ public class PrologueChallenge : MonoBehaviour
 
     private void CreateTimerPanel()
     {
+        Transform existing = transform.Find("ChallengeTimer");
+        if (existing != null)
+        {
+            timerPanel = existing.gameObject;
+            timerText = existing.GetComponentInChildren<TMP_Text>(true);
+            return;
+        }
+        if (endScreen == null) endScreen = FindAnyObjectByType<DeathScreenController>();
         if (endScreen == null || endScreen.HeadlineTemplate == null) return;
 
         timerPanel = new GameObject("ChallengeTimer", typeof(RectTransform), typeof(Image));
@@ -132,4 +148,7 @@ public class PrologueChallenge : MonoBehaviour
         textRect.anchoredPosition = Vector2.zero;
         textRect.sizeDelta = Vector2.zero;
     }
+
+    /// <summary>Permite que o Editor grave o relógio como objeto comum da cena.</summary>
+    public void BuildEditableTimer() => CreateTimerPanel();
 }

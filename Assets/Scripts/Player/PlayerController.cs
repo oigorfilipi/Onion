@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private float dashSpeed = 4f;
+    [SerializeField, Min(0)] private int dashStaminaCost = 10;
     [SerializeField] private TrailRenderer myTrailRenderer;
 
     private PlayerControls playerControls;
@@ -19,7 +20,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator myAnimator;
     private SpriteRenderer mySpriteRender;
-    private float startingMoveSpeed;
+    private PlayerVitals playerVitals;
+    private float speedBoostUntil;
+    private float temporarySpeedMultiplier = 1f;
 
     private bool facingLeft = false;
     private bool isDashing = false;
@@ -30,12 +33,12 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         mySpriteRender = GetComponent<SpriteRenderer>();
+        playerVitals = GetComponent<PlayerVitals>();
     }
 
     private void Start() {
         playerControls.Combat.Dash.performed += _ => Dash();
 
-        startingMoveSpeed = moveSpeed;
     }
 
     private void OnEnable() {
@@ -54,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update() {
         PlayerInput();
+        if (temporarySpeedMultiplier > 1f && Time.time >= speedBoostUntil)
+            temporarySpeedMultiplier = 1f;
     }
 
     private void FixedUpdate() {
@@ -69,7 +74,15 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Move() {
-        rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
+        float dashMultiplier = isDashing ? dashSpeed : 1f;
+        rb.MovePosition(rb.position + movement * (moveSpeed * temporarySpeedMultiplier * dashMultiplier * Time.fixedDeltaTime));
+    }
+
+    public void ApplySpeedBoost(float multiplier, float duration)
+    {
+        if (multiplier <= 1f || duration <= 0f) return;
+        temporarySpeedMultiplier = Mathf.Max(temporarySpeedMultiplier, multiplier);
+        speedBoostUntil = Mathf.Max(speedBoostUntil, Time.time + duration);
     }
 
     private void AdjustPlayerFacingDirection() {
@@ -85,12 +98,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Acelera por 0,2 s e liga o rastro; a coroutine devolve a velocidade normal e controla a recarga.
+    // Acelera o movimento por 0,2 s, consome estamina e controla a recarga do dash.
     private void Dash() {
-        if (Time.timeScale > 0f && !isDashing) {
+        if (Time.timeScale > 0f && !isDashing &&
+            (playerVitals == null || playerVitals.ConsumeStamina(dashStaminaCost))) {
             isDashing = true;
-            moveSpeed *= dashSpeed;
-            myTrailRenderer.emitting = true;
+            GameAudio.PlayDash();
+            if (myTrailRenderer != null) myTrailRenderer.emitting = true;
             StartCoroutine(EndDashRoutine());
         }
     }
@@ -99,9 +113,8 @@ public class PlayerController : MonoBehaviour
         float dashTime = .2f;
         float dashCD = .25f;
         yield return new WaitForSeconds(dashTime);
-        moveSpeed = startingMoveSpeed;
-        myTrailRenderer.emitting = false;
-        yield return new WaitForSeconds(dashCD);
         isDashing = false;
+        if (myTrailRenderer != null) myTrailRenderer.emitting = false;
+        yield return new WaitForSeconds(dashCD);
     }
 }

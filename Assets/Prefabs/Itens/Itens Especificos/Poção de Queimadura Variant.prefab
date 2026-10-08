@@ -13,6 +13,10 @@ PrefabInstance:
       value: "Po\xE7\xE3o de Queimadura"
       objectReference: {fileID: 0}
     - target: {fileID: 165047704489055678, guid: 7aa19f1ee3bc58943b90b9614d4514a1, type: 3}
+      propertyPath: fireImmunitySeconds
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 165047704489055678, guid: 7aa19f1ee3bc58943b90b9614d4514a1, type: 3}
       propertyPath: powerType
       value: 0
       objectReference: {fileID: 0}
